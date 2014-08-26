@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='ExpresionesLibres'>
+
+
+	<inherits name='com.google.gwt.user.User' />
+	<inherits name='com.google.gwt.inject.Inject' />
+
+	<!-- <inherits name='com.google.gwt.junit.JUnit' /> -->
+
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+
+	<!-- Other module inherits -->
+
+	<!-- Specify the app entry point class. -->
+	<!-- <entry-point class='ar.com.german.ExpresionesLibres.client.ExpresionesLibres' 
+		/> -->
+
+	<!-- Specify the paths for translatable code -->
+	<source path='client' />
+	<source path='shared' />
+
+	<inherits name='com.gwtplatform.dispatch.Dispatch' />
+
+	<inherits name='com.gwtplatform.mvp.MvpWithEntryPoint' />
+
+	<set-configuration-property name="gin.ginjector.modules"
+		value="ar.com.german.ExpresionesLibres.client.gin.ClientModule" />
+
+</module>
