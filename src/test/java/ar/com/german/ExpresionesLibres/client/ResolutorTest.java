@@ -29,21 +29,24 @@ public class ResolutorTest {
 	}
 
 	@Test
-	public void obtenerDesicionconValoresIntegerTest() {
+	public void obtenerDesicionConValoresIntegerTest() {
 
 		List<Concepto> conceptos = new ArrayList<>();
-		Concepto conceptoPrestacion = new Concepto("CodigoPrestacion", "Prestacion");
+		Concepto conceptoPrestacion = new Concepto("Prestacion", "Prestacion");
 		conceptos.add(conceptoPrestacion);
-		Concepto conceptoObraSocial = new Concepto("CodigoObraSocial", "Obra Social");
+		Concepto conceptoObraSocial = new Concepto("ObraSocial", "Obra Social");
 		conceptos.add(conceptoObraSocial);
 
 		List<Regla<Integer>> reglas = new ArrayList<>();
-		reglas.add(new Regla<Integer>(" \"420101\".equals(CodigoPrestacion) && \"220\".equals(CodigoObraSocial)", 159));
-		reglas.add(new Regla<Integer>(" \"420101\".equals(CodigoPrestacion) && \"220\".equals(CodigoObraSocial) ", 321));
+		reglas.add(new Regla<Integer>(" \"420101\".equals(Prestacion) && 220==ObraSocial && afiliadoGravadoIva ", 159));
+		reglas.add(new Regla<Integer>(" \"420101\".equals(Prestacion) && 220==ObraSocial ", 321));
 
 		List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
 		conceptosIngresados.add(new ConceptoIngresado<String>(conceptoPrestacion, "420101"));
-		conceptosIngresados.add(new ConceptoIngresado<String>(conceptoObraSocial, "220"));
+		Integer codigoObrasocial = 220;
+		conceptosIngresados.add(new ConceptoIngresado<Integer>(conceptoObraSocial, codigoObrasocial));
+		Concepto afiliadoGravadoIva = new Concepto("afiliadoGravadoIva", "Afiliado esta gravado en iva");
+		conceptosIngresados.add(new ConceptoIngresado<Boolean>(afiliadoGravadoIva, true));
 
 		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);
 
@@ -54,27 +57,11 @@ public class ResolutorTest {
 	}
 
 	@Test
-	public void obtenerResultadoConValoresdeDsintintosTiposTest() {
+	public void test() {
 
-		List<Concepto> conceptos = new ArrayList<>();
-		Concepto conceptoPrestacion = new Concepto("CodigoPrestacion", "Prestacion");
-		conceptos.add(conceptoPrestacion);
-		Concepto conceptoObraSocial = new Concepto("CodigoObraSocial", "Obra Social");
-		conceptos.add(conceptoObraSocial);
+		boolean condicion = ("420101".equals("420101") && 220 == 220 && true) ? true : false;
 
-		List<Regla<Integer>> reglas = new ArrayList<>();
-		reglas.add(new Regla<Integer>(" \"420101\".equals(CodigoPrestacion) && \"220\".equals(CodigoObraSocial)", 159));
-		reglas.add(new Regla<Integer>(" \"420101\".equals(CodigoPrestacion) && \"220\".equals(CodigoObraSocial) ", 321));
-
-		List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
-		conceptosIngresados.add(new ConceptoIngresado<String>(conceptoPrestacion, "420101"));
-		conceptosIngresados.add(new ConceptoIngresado<String>(conceptoObraSocial, "220"));
-
-		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);
-
-		Assert.assertNotNull(resultado);
-		Integer esperado = 159;
-		Assert.assertEquals(esperado, resultado);
+		System.out.println(condicion);
 
 	}
 

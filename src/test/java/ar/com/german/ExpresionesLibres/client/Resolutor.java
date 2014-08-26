@@ -49,7 +49,7 @@ public final class Resolutor {
 
 				// Para cada concepto de la regla le asigno un valor
 				for (TieneConceptoConValor concepto : conceptosIngresados) {
-					interpreter.set(concepto.getConcepto().getDescripcion(), concepto.getValor());
+					interpreter.set(concepto.getConcepto().getIdentificacion(), concepto.getValor());
 				}
 
 				System.out.println("condition=" + regla.getCondicion() + " ? true : false ");
