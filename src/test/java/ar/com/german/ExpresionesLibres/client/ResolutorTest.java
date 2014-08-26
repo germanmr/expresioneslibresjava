@@ -11,10 +11,11 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.Concepto;
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.ConceptoIngresado;
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.Regla;
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.TieneConceptoConValor;
+import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
+import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
+import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 
 public class ResolutorTest {
 

@@ -1,13 +1,12 @@
-package ar.com.german.ExpresionesLibres.client;
+package ar.com.german.ExpresionesLibres.server.beanshell;
 
 import java.util.List;
 
 import com.google.inject.Inject;
 
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.Concepto;
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.ConceptoIngresado;
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.Regla;
-import ar.com.german.ExpresionesLibres.client.beanshell.modelo.TieneConceptoConValor;
+import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 import bsh.EvalError;
 import bsh.Interpreter;
 
