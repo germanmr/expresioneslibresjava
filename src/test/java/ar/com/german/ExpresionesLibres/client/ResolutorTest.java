@@ -57,13 +57,4 @@ public class ResolutorTest {
 
 	}
 
-	@Test
-	public void test() {
-
-		boolean condicion = ("420101".equals("420101") && 220 == 220 && true) ? true : false;
-
-		System.out.println(condicion);
-
-	}
-
 }

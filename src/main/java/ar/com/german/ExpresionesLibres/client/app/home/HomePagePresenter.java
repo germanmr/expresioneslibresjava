@@ -13,9 +13,11 @@ import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
 public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomePagePresenter.MyProxy> {
+
 	public interface MyView extends View {
 
-		void agregarEventos();
+		void asignarFoco();
+
 	}
 
 	@ProxyStandard
@@ -30,7 +32,14 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 
 	@Override
 	protected void onBind() {
-		getView().agregarEventos();
 		super.onBind();
+	}
+
+	@Override
+	protected void onReset() {
+
+		getView().asignarFoco();
+
+		super.onReset();
 	}
 }
