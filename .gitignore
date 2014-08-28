@@ -1,3 +1,17 @@
 /target
 *.jar
 /.settings
+gwt-unitCache
+www-test
+target
+.project
+*.iml
+.settings
+.idea**
+.classpath
+.gwt
+bin
+META-INF
+.checkstyle
+/ExpresionesLibresTest-dev.launch
+/ExpresionesLibresTest-prod.launch
