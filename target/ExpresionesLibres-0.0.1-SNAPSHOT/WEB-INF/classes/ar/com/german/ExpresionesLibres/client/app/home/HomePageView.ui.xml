@@ -1,7 +1,13 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 	<g:HTMLPanel>
-		Hello World!
-		<g:SuggestBox ui:field="conceptos"></g:SuggestBox>
+		Si
+		<g:SuggestBox ui:field="conceptos" width="100" />
+		<g:SuggestBox ui:field="comparadores" width="100" />
+		<g:TextArea ui:field="valores" />
+		<g:TextArea ui:field="condicionEscrita" />
+		<g:Button ui:field="btnAgregarCondicion" text="Agregar Condicion" />
+		<c:CellTable ui:field="expresionesSimples" />
+		<g:TextBox ui:field="valor" />
 	</g:HTMLPanel>
 </ui:UiBinder>

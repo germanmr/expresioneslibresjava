@@ -45,7 +45,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 	ListDataProvider<Expresion> dataProvider;
 
-	private String conceptoElegido;
+	// private String conceptoElegido;
 
 	@UiField
 	Button btnAgregarCondicion;
@@ -70,7 +70,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	@UiField
 	TextArea condicionEscrita;
 
-	private String comparadorElegido;
+	// private String comparadorElegido;
 
 	@Inject
 	HomePageView(Binder uiBinder) {
@@ -79,45 +79,28 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 		crearCellTable();
 
-		conceptos.addValueChangeHandler(new ValueChangeHandler<String>() {
-
-			@Override
-			public void onValueChange(ValueChangeEvent<String> event) {
-				conceptoElegido = event.getValue();
-			}
-		});
-
-		comparadores.addValueChangeHandler(new ValueChangeHandler<String>() {
-
-			@Override
-			public void onValueChange(ValueChangeEvent<String> event) {
-				comparadorElegido = event.getValue();
-			}
-		});
+		// conceptos.addValueChangeHandler(new ValueChangeHandler<String>() {
+		//
+		// @Override
+		// public void onValueChange(ValueChangeEvent<String> event) {
+		// conceptoElegido = event.getValue();
+		// }
+		// });
+		//
+		// comparadores.addValueChangeHandler(new ValueChangeHandler<String>() {
+		//
+		// @Override
+		// public void onValueChange(ValueChangeEvent<String> event) {
+		// comparadorElegido = event.getValue();
+		// }
+		// });
 
 	}
 
 	@Override
 	public String getConceptoElegido() {
-		return conceptoElegido;
-	}
-
-	private void crearComparadores() {
-
-		// Creo los operadores de comparacion
-		// comparadoresMap=new HashMap<>();
-
-		//
-		// // Agrego los conceptos al oracula y lo asocio con el suggest box
-		// MultiWordSuggestOracle oraculoComparadores = new
-		// MultiWordSuggestOracle();
-		//
-		// for (Map.Entry<String, Concepto> entry : conceptosMap.entrySet()) {
-		// oraculoComparadores.add(entry.getKey());
-		// }
-		//
-		// comparadores = new SuggestBox(oraculoComparadores);
-
+		// return conceptoElegido;
+		return "";
 	}
 
 	@Override
@@ -154,7 +137,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 			@Override
 			public String getValue(Expresion object) {
-				return object.getConcatenador();
+				return object.getConcatenador().getNombre();
 			}
 		});
 
@@ -178,18 +161,19 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 		});
 	}
 
-	public void setConceptoElegido(String conceptoElegido) {
-		this.conceptoElegido = conceptoElegido;
-	}
+	// public void setConceptoElegido(String conceptoElegido) {
+	// this.conceptoElegido = conceptoElegido;
+	// }
 
 	@Override
 	public String getComparadorElegido() {
-		return comparadorElegido;
+		// return comparadorElegido;
+		return "";
 	}
 
-	public void setComparadorElegido(String comparadorElegido) {
-		this.comparadorElegido = comparadorElegido;
-	}
+	// public void setComparadorElegido(String comparadorElegido) {
+	// this.comparadorElegido = comparadorElegido;
+	// }
 
 	@Override
 	public String getValor() {

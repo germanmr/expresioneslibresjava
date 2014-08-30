@@ -16,6 +16,7 @@ import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
+import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 
 public class ResolutorTest {
 
@@ -33,9 +34,9 @@ public class ResolutorTest {
 	public void obtenerDesicionConValoresIntegerTest() {
 
 		List<Concepto> conceptos = new ArrayList<>();
-		Concepto conceptoPrestacion = new Concepto("Prestacion", "Prestacion");
+		Concepto conceptoPrestacion = new Concepto("Prestacion", "Prestacion", TiposConceptos.CADENA);
 		conceptos.add(conceptoPrestacion);
-		Concepto conceptoObraSocial = new Concepto("ObraSocial", "Obra Social");
+		Concepto conceptoObraSocial = new Concepto("ObraSocial", "Obra Social", TiposConceptos.NUMERO);
 		conceptos.add(conceptoObraSocial);
 
 		List<Regla<Integer>> reglas = new ArrayList<>();
@@ -46,7 +47,7 @@ public class ResolutorTest {
 		conceptosIngresados.add(new ConceptoIngresado<String>(conceptoPrestacion, "420101"));
 		Integer codigoObrasocial = 220;
 		conceptosIngresados.add(new ConceptoIngresado<Integer>(conceptoObraSocial, codigoObrasocial));
-		Concepto afiliadoGravadoIva = new Concepto("afiliadoGravadoIva", "Afiliado esta gravado en iva");
+		Concepto afiliadoGravadoIva = new Concepto("afiliadoGravadoIva", "Afiliado esta gravado en iva", TiposConceptos.BOOLEANO);
 		conceptosIngresados.add(new ConceptoIngresado<Boolean>(afiliadoGravadoIva, true));
 
 		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);

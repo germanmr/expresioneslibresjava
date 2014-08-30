@@ -81,7 +81,6 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 		comparadoresMap.put(" ESTA ENTRE ", new Comparador(" ESTA ENTRE ", OperadoresSimbolicos.ENTRE));
 
 		getView().aregarComparadores(comparadoresMap);
-
 		getView().onBtnAgregarcondicionAddclickHandler(new ClickHandler() {
 
 			@Override
@@ -111,18 +110,15 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 		Comparador comparador = comparadoresMap.get(getView().getComparadorElegido());
 		String valor = getView().getValor();
 
-		String condicinon = obtenercondicion(concepto, comparador, valor);
-
 		System.out.println(concepto);
 		System.out.println(comparador);
 		System.out.println(valor);
-		// condicion = conceptos.getValue() + " " + comparadores.getValue() +
-		// " " + valor.getText();
+
+		condicion = obtenercondicion(concepto, comparador, valor);
+
 		System.out.println("Condicion: " + condicion);
 
-		// Window.alert(condicion);
-
-		// Expresion expresion = new Expresion(condicion, concatenador);
+		Expresion expresion = new Expresion(condicion, new Concatenador(" Ademas ", ConcatenadoresJava.ADEMAS));
 		//
 		// dataProvider.getList().add(expresion);
 		//
@@ -182,23 +178,11 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 	 */
 	private String obtenercondicion(Concepto concepto, Comparador comparador, String valor) {
 
-		try {
-			String condicion;
+		String condicion;
 
-			String expresionComparacion = comparador.getExpresionComparacion();
+		condicion = concepto.getIdentificacion() + comparador.getPrefijo() + valor + comparador.getSufijo();
 
-			Interpreter interpreter = new Interpreter();
-			interpreter.set("concepto", concepto.getIdentificacion());
-			interpreter.set("valor", valor);
-			String expresionAEvaluar = "condicion=" + expresionComparacion;
-			condicion = (String) interpreter.eval(expresionAEvaluar);
-
-			return condicion;
-
-		} catch (EvalError e) {
-			e.printStackTrace();
-			return null;
-		}
+		return condicion;
 
 	}
 
