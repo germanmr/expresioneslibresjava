@@ -2,14 +2,26 @@ package ar.com.german.ExpresionesLibres.client.app.home;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
+import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneConcepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
+import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
+import com.google.gwt.dev.util.collect.HashMap;
+import com.google.gwt.editor.client.Editor.Ignore;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -19,6 +31,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -32,14 +45,18 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 	ListDataProvider<Expresion> dataProvider;
 
+	private String conceptoElegido;
+
 	@UiField
 	Button btnAgregarCondicion;
 
-	@UiField(provided = true)
+	// (provided = true)
+	@UiField
 	SuggestBox conceptos;
 
-	@UiField(provided = true)
-	SuggestBox operadoresComparacion;
+	// (provided = true)
+	@UiField
+	SuggestBox comparadores;
 
 	@UiField
 	TextArea valores;
@@ -53,39 +70,78 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	@UiField
 	TextArea condicionEscrita;
 
+	private String comparadorElegido;
+
 	@Inject
 	HomePageView(Binder uiBinder) {
 
-		// Creo los operadores de concatenacion
-		MultiWordSuggestOracle oraculoOperadoresComparacion = new MultiWordSuggestOracle();
-
-		oraculoOperadoresComparacion.add("ES IGUAL A "); // .equals() o ==
-		oraculoOperadoresComparacion.add("ES DISTINTO DE ");// <> o !.equals
-		oraculoOperadoresComparacion.add("ES MENOR QUE "); // <
-		oraculoOperadoresComparacion.add("ES MENOR IGUAL QUE"); // <=
-		oraculoOperadoresComparacion.add("ES MAYOR QUE "); // >
-		oraculoOperadoresComparacion.add("ES MAYOR IGUAL QUE "); // >=
-		oraculoOperadoresComparacion.add("ESTA ENTRE"); // .contains() para
-														// numeros y cadenas
-
-		operadoresComparacion = new SuggestBox(oraculoOperadoresComparacion);
-
-		// Creo los operadores de concatenacion
-		MultiWordSuggestOracle oraculoConceptos = new MultiWordSuggestOracle();
-
-		oraculoConceptos.add("Prestacion");// Prestacion
-		oraculoConceptos.add("Obra Social"); // Obra Social
-		oraculoConceptos.add("Especialidad Efector"); // EspecialidadEfector
-		oraculoConceptos.add("Convenio"); // Convenio
-		oraculoConceptos.add("Profesion del Prestador"); // ProfesionDelPrestador
-		oraculoConceptos.add("Matricula del Prestador"); // MatriculaDelPrestador
-		oraculoConceptos.add("Plan del Afiliado"); // PlanDelAfiliado
-		oraculoConceptos.add("Afiliado Gravado en IVA"); // AfiliadoGravadoIVA
-
-		conceptos = new SuggestBox(oraculoConceptos);
-
 		initWidget(uiBinder.createAndBindUi(this));
 
+		crearCellTable();
+
+		conceptos.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				conceptoElegido = event.getValue();
+			}
+		});
+
+		comparadores.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				comparadorElegido = event.getValue();
+			}
+		});
+
+	}
+
+	@Override
+	public String getConceptoElegido() {
+		return conceptoElegido;
+	}
+
+	private void crearComparadores() {
+
+		// Creo los operadores de comparacion
+		// comparadoresMap=new HashMap<>();
+
+		//
+		// // Agrego los conceptos al oracula y lo asocio con el suggest box
+		// MultiWordSuggestOracle oraculoComparadores = new
+		// MultiWordSuggestOracle();
+		//
+		// for (Map.Entry<String, Concepto> entry : conceptosMap.entrySet()) {
+		// oraculoComparadores.add(entry.getKey());
+		// }
+		//
+		// comparadores = new SuggestBox(oraculoComparadores);
+
+	}
+
+	@Override
+	public void agregarConceptos(Map<String, Concepto> conceptosMap) {
+		MultiWordSuggestOracle oraculoConceptos = (MultiWordSuggestOracle) conceptos.getSuggestOracle();
+
+		for (Map.Entry<String, Concepto> entry : conceptosMap.entrySet()) {
+			oraculoConceptos.add(entry.getKey());
+		}
+
+	}
+
+	@Override
+	public void aregarComparadores(Map<String, Comparador> comparadoresMap) {
+
+		MultiWordSuggestOracle oraculoConceptos = (MultiWordSuggestOracle) comparadores.getSuggestOracle();
+
+		for (Map.Entry<String, Comparador> entry : comparadoresMap.entrySet()) {
+			oraculoConceptos.add(entry.getKey());
+		}
+
+	}
+
+	private void crearCellTable() {
 		expresionesSimples.addColumn(new TextColumn<Expresion>() {
 
 			@Override
@@ -94,7 +150,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 			}
 		});
 
-		expresionesSimples.addColumn(new Column<Expresion, String>(new SelectionCell(getAcceptableValues())) {
+		expresionesSimples.addColumn(new Column<Expresion, String>(new SelectionCell(Arrays.asList("", " ADEMAS ", " O "))) {
 
 			@Override
 			public String getValue(Expresion object) {
@@ -102,8 +158,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 			}
 		});
 
-		ButtonCell buttonCell = new ButtonCell();
-		Column buttonColumn = new Column<Expresion, String>(buttonCell) {
+		Column<Expresion, String> buttonColumn = new Column<Expresion, String>(new ButtonCell()) {
 			@Override
 			public String getValue(Expresion object) {
 				// The value to display in the button.
@@ -118,29 +173,27 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 		buttonColumn.setFieldUpdater(new FieldUpdater<Expresion, String>() {
 			public void update(int index, Expresion object, String value) {
 				// Value is the button value. Object is the row object.
-				Window.alert("You clicked: " + value);
+				// TODO Sacar de la coleccion
 			}
 		});
-
-		// Create a data provider.
-		dataProvider = new ListDataProvider<Expresion>();
-
-		// Connect the table to the data provider.
-		dataProvider.addDataDisplay(expresionesSimples);
-
-		// Add the data to the data provider, which automatically pushes it to
-		// the
-		// widget.
-		List<Expresion> list = dataProvider.getList();
-
-		list.add(new Expresion("Prestacion es igual a 420101", " ADEMAS "));
-		list.add(new Expresion("Obra social igual a 220", " O "));
-		list.add(new Expresion("Afiliado gravado en IVA", ""));
-
 	}
 
-	private List<String> getAcceptableValues() {
-		return Arrays.asList("", " ADEMAS ", " O ");
+	public void setConceptoElegido(String conceptoElegido) {
+		this.conceptoElegido = conceptoElegido;
+	}
+
+	@Override
+	public String getComparadorElegido() {
+		return comparadorElegido;
+	}
+
+	public void setComparadorElegido(String comparadorElegido) {
+		this.comparadorElegido = comparadorElegido;
+	}
+
+	@Override
+	public String getValor() {
+		return valor.getText();
 	}
 
 	@Override
@@ -148,42 +201,9 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 		conceptos.setFocus(true);
 	}
 
-	private void agregarCondicion() {
-
-		String condicion = "";
-		String concatenador = "";
-
-		// Agrego la expresion a la lista
-		Expresion expresion = new Expresion(condicion, concatenador);
-
-		dataProvider.getList().add(expresion);
-
-		/**
-		 * Inicializo para agregar una nueva condicion Concepto/ comparador /
-		 * Constantes / Regla Escrita
-		 */
-		// THISFORM.edtCondicion.Value=""
-		// thisform.cmbconcepto.DisplayValue=""
-		// .concepto=.F.
-		// thisform.cmboperadores.DisplayValue=""
-		// .operador=.F.
-		// thisform.edtlistaConstantes.Value=""
-		// .constante=.F.
-		// .concatenador=.F.
-		//
-
-		/**
-		 * Recorro la coleccion de ( expresion / concatenador) y vuelvo a
-		 * escribir la regla +
-		 * " Si concepto comparador constante/s concatenador "
-		 */
-
-		// * Tengo que agregar cada regla
-		// * oRegla()
-		// *'Concepto = "420101" AND [2] = 220'
-		// * Expresion concatenador: [1] = "420101" AND
-		// *aReglas(1)=CREATEOBJECT("Regla",'[1] = "420101" AND [2] = 220',159)
-		// ENDWITH
+	@Override
+	public void onBtnAgregarcondicionAddclickHandler(ClickHandler clickHandler) {
+		btnAgregarCondicion.addClickHandler(clickHandler);
 
 	}
 

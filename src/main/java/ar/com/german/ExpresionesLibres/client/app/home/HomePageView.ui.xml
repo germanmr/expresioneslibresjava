@@ -3,7 +3,7 @@
 	<g:HTMLPanel>
 		Si
 		<g:SuggestBox ui:field="conceptos" width="100" />
-		<g:SuggestBox ui:field="operadoresComparacion" width="100" />
+		<g:SuggestBox ui:field="comparadores" width="100" />
 		<g:TextArea ui:field="valores" />
 		<g:TextArea ui:field="condicionEscrita" />
 		<g:Button ui:field="btnAgregarCondicion" text="Agregar Condicion" />

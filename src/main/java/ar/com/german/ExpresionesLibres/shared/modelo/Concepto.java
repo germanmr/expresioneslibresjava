@@ -1,5 +1,7 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
+import java.util.List;
+
 /**
  * Es cualquier entidad del modelo de negocio de una {@link Regla}
  * 
@@ -13,17 +15,19 @@ public final class Concepto {
 	// Es un nombre decriptivo
 	String descripcion;
 
+	TiposConceptos tiposConceptos;
+
+	List<String> operadoresValidos;
+
+	// OperadorComparacion
+
 	public Concepto() {
 	}
 
-	/**
-	 * 
-	 * @param codigo
-	 * @param descripcion
-	 */
-	public Concepto(String codigo, String descripcion) {
-		this.identificacion = codigo;
+	public Concepto(String identificacion, String descripcion, TiposConceptos tiposConceptos) {
+		this.identificacion = identificacion;
 		this.descripcion = descripcion;
+		this.tiposConceptos = tiposConceptos;
 	}
 
 	public String getIdentificacion() {
@@ -44,8 +48,7 @@ public final class Concepto {
 
 	@Override
 	public String toString() {
-		return "Concepto [identificacion=" + identificacion + ", descripcion=" + descripcion + ", toString()="
-				+ super.toString() + "]";
+		return "Concepto [identificacion=" + identificacion + ", descripcion=" + descripcion + ", toString()=" + super.toString() + "]";
 	}
 
 }
