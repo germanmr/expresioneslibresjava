@@ -24,6 +24,14 @@ public final class Concepto {
 	public Concepto() {
 	}
 
+	/**
+	 * Crea un concepto con una identificacion, una descripcion y un
+	 * {@link TiposConceptos}
+	 * 
+	 * @param identificacion
+	 * @param descripcion
+	 * @param tiposConceptos
+	 */
 	public Concepto(String identificacion, String descripcion, TiposConceptos tiposConceptos) {
 		this.identificacion = identificacion;
 		this.descripcion = descripcion;

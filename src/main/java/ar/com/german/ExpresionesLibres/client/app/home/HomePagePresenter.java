@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -41,10 +42,17 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 
 		String getValor();
 
+		String getValores();
+
+		void agregarExpresion(Expresion expresion);
+
 	}
 
 	private Map<String, Concepto> conceptosMap = new HashMap<String, Concepto>();
 	private Map<String, Comparador> comparadoresMap = new HashMap<String, Comparador>();
+
+	// private ListDataProvider<Expresion> dataProvider = new
+	// ListDataProvider<Expresion>();
 
 	@ProxyStandard
 	@NameToken(NameTokens.home)
@@ -59,15 +67,15 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 	@Override
 	protected void onBind() {
 
-		conceptosMap.put("Prestacion", new Concepto("Prestacion", "Prestacion", TiposConceptos.CADENA));
-		conceptosMap.put("Obra Social", new Concepto("ObraSocial", "Obra Social", TiposConceptos.CADENA));
+		conceptosMap.put("Prestacion", new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA));
+		conceptosMap.put("Obra Social", new Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA));
 		conceptosMap
-				.put("Especialidad del Efector", new Concepto("EspecialidadEfector", "Especialidad del Efector", TiposConceptos.NUMERO));
-		conceptosMap.put("Convenio", new Concepto("Convenio", "Convenio", TiposConceptos.NUMERO));
-		conceptosMap.put("Profesion del Prestador", new Concepto("ProfesionPrestador", "Profesion del Prestador", TiposConceptos.NUMERO));
-		conceptosMap.put("Matricula del Prestador", new Concepto("MatriculaPrestador", "Matricula del Prestador", TiposConceptos.NUMERO));
-		conceptosMap.put("Plan del Afiliado", new Concepto("PlanAfiliado", "Plan del Afiliado", TiposConceptos.NUMERO));
-		conceptosMap.put("Afiliado Gravado en IVA", new Concepto("AfiliadoGravadoIVA", "Afiliado Gravado en IVA", TiposConceptos.BOOLEANO));
+				.put("Especialidad del Efector", new Concepto("especialidadEfector", "Especialidad del Efector", TiposConceptos.NUMERO));
+		conceptosMap.put("Convenio", new Concepto("convenio", "Convenio", TiposConceptos.NUMERO));
+		conceptosMap.put("Profesion del Prestador", new Concepto("profesionPrestador", "Profesion del Prestador", TiposConceptos.NUMERO));
+		conceptosMap.put("Matricula del Prestador", new Concepto("matriculaPrestador", "Matricula del Prestador", TiposConceptos.NUMERO));
+		conceptosMap.put("Plan del Afiliado", new Concepto("planAfiliado", "Plan del Afiliado", TiposConceptos.NUMERO));
+		conceptosMap.put("Afiliado Gravado en IVA", new Concepto("afiliadoGravadoIVA", "Afiliado Gravado en IVA", TiposConceptos.BOOLEANO));
 
 		getView().agregarConceptos(conceptosMap);
 
@@ -81,6 +89,7 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 		comparadoresMap.put(" ESTA ENTRE ", new Comparador(" ESTA ENTRE ", OperadoresSimbolicos.ENTRE));
 
 		getView().aregarComparadores(comparadoresMap);
+
 		getView().onBtnAgregarcondicionAddclickHandler(new ClickHandler() {
 
 			@Override
@@ -102,25 +111,15 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 	 */
 	private void agregarCondicion() {
 
-		String condicion = "";
-		String concatenador = "";
-
 		// Agrego la expresion a la lista
 		Concepto concepto = conceptosMap.get(getView().getConceptoElegido());
 		Comparador comparador = comparadoresMap.get(getView().getComparadorElegido());
-		String valor = getView().getValor();
+		String valor = getView().getValores();
 
-		System.out.println(concepto);
-		System.out.println(comparador);
-		System.out.println(valor);
+		Expresion expresion = new Expresion(concepto, comparador, valor, new Concatenador(" Ademas ", ConcatenadoresJava.ADEMAS));
 
-		condicion = obtenercondicion(concepto, comparador, valor);
+		getView().agregarExpresion(expresion);
 
-		System.out.println("Condicion: " + condicion);
-
-		Expresion expresion = new Expresion(condicion, new Concatenador(" Ademas ", ConcatenadoresJava.ADEMAS));
-		//
-		// dataProvider.getList().add(expresion);
 		//
 		// // Create a data provider.
 		// dataProvider = new ListDataProvider<Expresion>();
@@ -164,25 +163,6 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 		// * Expresion concatenador: [1] = "420101" AND
 		// *aReglas(1)=CREATEOBJECT("Regla",'[1] = "420101" AND [2] = 220',159)
 		// ENDWITH
-
-	}
-
-	/**
-	 * Obtenemos un {@link String} con la condicion parseada<br>
-	 * Concepto Comparador valor
-	 * 
-	 * @param concepto
-	 * @param comparador
-	 * @param valor
-	 * @return
-	 */
-	private String obtenercondicion(Concepto concepto, Comparador comparador, String valor) {
-
-		String condicion;
-
-		condicion = concepto.getIdentificacion() + comparador.getPrefijo() + valor + comparador.getSufijo();
-
-		return condicion;
 
 	}
 

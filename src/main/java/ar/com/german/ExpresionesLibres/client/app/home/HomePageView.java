@@ -1,25 +1,17 @@
 package ar.com.german.ExpresionesLibres.client.app.home;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
-import ar.com.german.ExpresionesLibres.shared.modelo.TieneConcepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
-import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.SelectionCell;
-import com.google.gwt.dev.util.collect.HashMap;
-import com.google.gwt.editor.client.Editor.Ignore;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -27,11 +19,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
-import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -43,18 +33,14 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	interface Binder extends UiBinder<Widget, HomePageView> {
 	}
 
-	ListDataProvider<Expresion> dataProvider;
-
-	// private String conceptoElegido;
+	// ListDataProvider<Expresion> dataProvider;
 
 	@UiField
 	Button btnAgregarCondicion;
 
-	// (provided = true)
 	@UiField
 	SuggestBox conceptos;
 
-	// (provided = true)
 	@UiField
 	SuggestBox comparadores;
 
@@ -70,7 +56,11 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	@UiField
 	TextArea condicionEscrita;
 
-	// private String comparadorElegido;
+	private String conceptoElegido;
+
+	private String comparadorElegido;
+
+	private ListDataProvider<Expresion> dataProvider = new ListDataProvider<Expresion>();
 
 	@Inject
 	HomePageView(Binder uiBinder) {
@@ -79,28 +69,28 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 		crearCellTable();
 
-		// conceptos.addValueChangeHandler(new ValueChangeHandler<String>() {
-		//
-		// @Override
-		// public void onValueChange(ValueChangeEvent<String> event) {
-		// conceptoElegido = event.getValue();
-		// }
-		// });
-		//
-		// comparadores.addValueChangeHandler(new ValueChangeHandler<String>() {
-		//
-		// @Override
-		// public void onValueChange(ValueChangeEvent<String> event) {
-		// comparadorElegido = event.getValue();
-		// }
-		// });
+		conceptos.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				conceptoElegido = event.getValue();
+			}
+		});
+
+		comparadores.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				comparadorElegido = event.getValue();
+			}
+		});
 
 	}
 
 	@Override
 	public String getConceptoElegido() {
-		// return conceptoElegido;
-		return "";
+		return conceptoElegido;
+
 	}
 
 	@Override
@@ -124,15 +114,21 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 	}
 
+	/**
+	 * Creamos un Cell table con 4 columnas, una {@link Expresion} simple, un
+	 * concatenador,
+	 */
 	private void crearCellTable() {
+		// Esta es la expresion
 		expresionesSimples.addColumn(new TextColumn<Expresion>() {
 
 			@Override
 			public String getValue(Expresion object) {
-				return object.getCondicion();
+				return object.obtenerCondicionEscrita();
 			}
 		});
 
+		// Esto es un concatenador, ADEMAS, O
 		expresionesSimples.addColumn(new Column<Expresion, String>(new SelectionCell(Arrays.asList("", " ADEMAS ", " O "))) {
 
 			@Override
@@ -157,23 +153,22 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 			public void update(int index, Expresion object, String value) {
 				// Value is the button value. Object is the row object.
 				// TODO Sacar de la coleccion
+
 			}
 		});
-	}
 
-	// public void setConceptoElegido(String conceptoElegido) {
-	// this.conceptoElegido = conceptoElegido;
-	// }
+		dataProvider.addDataDisplay(expresionesSimples);
+	}
 
 	@Override
 	public String getComparadorElegido() {
-		// return comparadorElegido;
-		return "";
+		return comparadorElegido;
 	}
 
-	// public void setComparadorElegido(String comparadorElegido) {
-	// this.comparadorElegido = comparadorElegido;
-	// }
+	@Override
+	public String getValores() {
+		return valores.getText();
+	}
 
 	@Override
 	public String getValor() {
@@ -274,6 +269,13 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 		// THISFORM.edtCondicion.Value= "Si " +
 		// ALLTRIM(THISFORM.CMBconcepto.DisplayValue) + " " +
 		// ALLTRIM(thisform.cmbOperadores.DisplayValue) + " " + lConstante
+
+	}
+
+	@Override
+	public void agregarExpresion(Expresion expresion) {
+		// dataProvider.getList().clear();
+		dataProvider.getList().add(expresion);
 
 	}
 

@@ -2,12 +2,17 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 	<g:HTMLPanel>
 		Si
+		<g:Label> Concepto</g:Label>
 		<g:SuggestBox ui:field="conceptos" width="100" />
+		<g:Label> Comparador </g:Label>
 		<g:SuggestBox ui:field="comparadores" width="100" />
+		<g:Label> Valores </g:Label>
 		<g:TextArea ui:field="valores" />
+		<g:Label> Condicion escrita </g:Label>
 		<g:TextArea ui:field="condicionEscrita" />
 		<g:Button ui:field="btnAgregarCondicion" text="Agregar Condicion" />
 		<c:CellTable ui:field="expresionesSimples" />
+		<g:Label> Valor Devuelto </g:Label>
 		<g:TextBox ui:field="valor" />
 	</g:HTMLPanel>
 </ui:UiBinder>
