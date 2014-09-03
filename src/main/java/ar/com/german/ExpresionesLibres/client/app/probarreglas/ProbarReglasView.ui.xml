@@ -4,5 +4,26 @@
 
 		Aca cargamos conceptos para poder probar si las reglas andan!!!
 
+		<g:Label>Prestacion</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Obra Social</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Especialidad del Efector</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Convenio</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Profesion del Prestador</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Matricula del Prestador</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Plan del Afiliado</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>Matricula del Prestador</g:Label>
+		<g:TextBox></g:TextBox>
+		<g:Label>afiliadoGravadoIVA</g:Label>
+		<g:CheckBox></g:CheckBox>
+		
+		<g:Button ui:field="decidir">Decidir</g:Button>
+
 	</g:HTMLPanel>
 </ui:UiBinder>

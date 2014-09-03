@@ -7,9 +7,12 @@ import javax.inject.Inject;
 
 import ar.com.german.ExpresionesLibres.client.app.ApplicationPresenter;
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
+import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -21,7 +24,11 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 
 	public interface MyView extends View {
 
+		void onButtonDecidirAddClickHandler(ClickHandler clickHandler);
+
 	}
+
+	private Resolutor resolutor;
 
 	@ProxyStandard
 	@NameToken(NameTokens.probador)
@@ -35,6 +42,16 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 
 	@Override
 	protected void onBind() {
+
+		getView().onButtonDecidirAddClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				// resolutor.obtenerResultado(conceptos, reglas,
+				// conceptosIngresados);
+
+			}
+		});
 
 		super.onBind();
 	}
