@@ -1,11 +1,13 @@
-package ar.com.german.ExpresionesLibres.client.app.home;
+package ar.com.german.ExpresionesLibres.client.app.generadordereglas;
 
 import java.util.Arrays;
 import java.util.Map;
 
 import javax.inject.Inject;
 
+import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 
 import com.google.gwt.cell.client.ButtonCell;
@@ -28,12 +30,10 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.gwtplatform.mvp.client.ViewImpl;
 
-public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
+public class GeneradorDeReglasView extends ViewImpl implements GeneradorDeReglasPresenter.MyView {
 
-	interface Binder extends UiBinder<Widget, HomePageView> {
+	interface Binder extends UiBinder<Widget, GeneradorDeReglasView> {
 	}
-
-	// ListDataProvider<Expresion> dataProvider;
 
 	@UiField
 	Button btnAgregarCondicion;
@@ -54,7 +54,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	TextBox valor;
 
 	@UiField
-	TextArea condicionEscrita;
+	TextArea regla;
 
 	private String conceptoElegido;
 
@@ -63,7 +63,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	private ListDataProvider<Expresion> dataProvider = new ListDataProvider<Expresion>();
 
 	@Inject
-	HomePageView(Binder uiBinder) {
+	GeneradorDeReglasView(Binder uiBinder) {
 
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -152,7 +152,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 		buttonColumn.setFieldUpdater(new FieldUpdater<Expresion, String>() {
 			public void update(int index, Expresion object, String value) {
 				// Value is the button value. Object is the row object.
-				// TODO Sacar de la coleccion
+				// TODO Sacar de la coleccion solo si es la utima fila
 
 			}
 		});
@@ -186,97 +186,18 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 
 	}
 
-	private void armarFuncion(TieneConceptoConValor element) {
-
-		/**
-		 * Para verificar que se cumple la expresion
-		 */
-
-		// DIMENSION aMapaValores(4)
-		// aMapaValores(1)=CREATEOBJECT("MapElement","Concepto","Comparador")
-		// aMapaValores(2)=CREATEOBJECT("MapElement","Comparador","Constante")
-		// aMapaValores(3)=CREATEOBJECT("MapElement","Constante","Concatenador")
-		// aMapaValores(4)=CREATEOBJECT("MapElement","Concatenador","Concepto")
-		/**
-		 * Tiene que cumplir con la siguiente regla: Expresion [Concatenador
-		 * Expresion][Concatenador Expresion]... Donde expresion: Concepto
-		 * Comparador Constante Concepto Comparador Constante Concatenador
-		 * Concepto ...
-		 */
-
-		// DO CASE
-		// CASE pElemento.tipo="Concepto"
-		// .expresionSimple.Concepto=pElemento
-		//
-		// CASE pElemento.tipo="Comparador"
-		// .expresionSimple.operador=pElemento
-		//
-		// CASE pElemento.tipo="Constante"
-		// .expresionSimple.operador=pElemento
-		// * Tengo que formatear segun el tipo de dato elegido
-		//
-		// CASE pElemento.tipo="Concatenador"
-		//
-		// OTHERWISE
-		// * y aca que mierda hago???
-		//
-		// ENDCASE
-
-		// IF RECCOUNT("cExpresion")>0 THEN
-		//
-		//
-		// SELECT cExpresion
-		// GO TOP
-		// lUltimoTipo=ALLTRIM(cExpresion.tipo)
-		// FOR EACH mapElement IN aMapaValores
-		// IF ALLTRIM(lUltimoTipo)=mapElement.clave THEN
-		// IF pElemento.tipo<>mapElement.valor THEN
-		// RETURN .F.
-		// ENDIF
-		//
-		// ENDIF
-		// ENDFOR
-		// ENDIF
-
-		// INSERT INTO cExpresion(tipo,codigo,valor)
-		// VALUES(pElemento.tipo,pElemento.codigo,pElemento.valor)
-
-		// Expresion expresion =new Expresion(new condi, concatenador);
-
-		// *.dibujarExpression()???
-		//
-		// SELECT cExpresion
-		// .EdtExpression.VALUE=""
-
-		// SCAN
-		// .EdtExpression.VALUE=.EdtExpression.VALUE+" " +
-		// ALLTRIM(cExpresion.valor)
-		// ENDSCAN
-		//
-		//
-		//
-		// ENDWITH
-
-	}
-
-	private void dibujarcondicion() {
-		// lConstante=""
-
-		// IF !ISBLANK(ALLTRIM(thisform.edtlistaConstantes.Value)) THEN
-		// lConstante="("+ALLTRIM(thisform.edtlistaConstantes.Value)+")"
-		// ENDIF
-
-		// THISFORM.edtCondicion.Value= "Si " +
-		// ALLTRIM(THISFORM.CMBconcepto.DisplayValue) + " " +
-		// ALLTRIM(thisform.cmbOperadores.DisplayValue) + " " + lConstante
-
-	}
-
 	@Override
 	public void agregarExpresion(Expresion expresion) {
-		// dataProvider.getList().clear();
 		dataProvider.getList().add(expresion);
 
 	}
 
+	@Override
+	public void iniciarExpresion() {
+		conceptos.setValue(null);
+		conceptoElegido = null;
+		comparadores.setValue(null);
+		comparadorElegido = null;
+		valores.setText("");
+	}
 }

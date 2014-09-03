@@ -18,11 +18,10 @@ public class ClientModule extends AbstractPresenterModule {
 		install(new RpcDispatchAsyncModule());
 		install(new ApplicationModule());
 
-		// bindConstant().annotatedWith(GaAccount.class).to(ANALYTICS_ACCOUNT);
-
-		bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
-		bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.home);
-		bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.home);
+		// bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.generadorDeReglas);
+		bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.probador);
+		bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.generadorDeReglas);
+		bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.generadorDeReglas);
 
 	}
 

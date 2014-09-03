@@ -1,4 +1,4 @@
-package ar.com.german.ExpresionesLibres.client.app.home;
+package ar.com.german.ExpresionesLibres.shared.modelo;
 
 public enum OperadoresSimbolicos {
 

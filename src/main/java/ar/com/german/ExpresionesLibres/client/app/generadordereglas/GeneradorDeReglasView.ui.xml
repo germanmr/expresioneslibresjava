@@ -8,10 +8,10 @@
 		<g:SuggestBox ui:field="comparadores" width="100" />
 		<g:Label> Valores </g:Label>
 		<g:TextArea ui:field="valores" />
-		<g:Label> Condicion escrita </g:Label>
-		<g:TextArea ui:field="condicionEscrita" />
 		<g:Button ui:field="btnAgregarCondicion" text="Agregar Condicion" />
 		<c:CellTable ui:field="expresionesSimples" />
+		<g:Label> Regla </g:Label>
+		<g:TextArea ui:field="regla" />
 		<g:Label> Valor Devuelto </g:Label>
 		<g:TextBox ui:field="valor" />
 	</g:HTMLPanel>

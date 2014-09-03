@@ -1,6 +1,5 @@
-package ar.com.german.ExpresionesLibres.client.app.home;
+package ar.com.german.ExpresionesLibres.shared.modelo;
 
-import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 
 /**
  * Es una agrupamiento de un {@link Concepto} + un {@link Concatenador} + un

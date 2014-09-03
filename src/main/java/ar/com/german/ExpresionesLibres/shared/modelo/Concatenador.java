@@ -1,6 +1,12 @@
-package ar.com.german.ExpresionesLibres.client.app.home;
+package ar.com.german.ExpresionesLibres.shared.modelo;
 
-public class Concatenador {
+/**
+ * Relaciona dos expresiones Expresiones simples
+ * 
+ * @author germanmr
+ * 
+ */
+public final class Concatenador {
 
 	private String nombre;
 	private ConcatenadoresJava concatenador;
@@ -9,7 +15,6 @@ public class Concatenador {
 	}
 
 	public Concatenador(String nombre, ConcatenadoresJava concatenador) {
-		super();
 		this.nombre = nombre;
 		this.concatenador = concatenador;
 	}

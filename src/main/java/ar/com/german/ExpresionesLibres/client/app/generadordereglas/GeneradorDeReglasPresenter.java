@@ -1,4 +1,4 @@
-package ar.com.german.ExpresionesLibres.client.app.home;
+package ar.com.german.ExpresionesLibres.client.app.generadordereglas;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,16 +7,16 @@ import javax.inject.Inject;
 
 import ar.com.german.ExpresionesLibres.client.app.ApplicationPresenter;
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
+import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
+import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
+import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
+import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
-import bsh.EvalError;
-import bsh.Interpreter;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
-import com.google.gwt.user.client.ui.SuggestBox;
-import com.google.gwt.view.client.ListDataProvider;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -24,7 +24,7 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomePagePresenter.MyProxy> {
+public class GeneradorDeReglasPresenter extends Presenter<GeneradorDeReglasPresenter.MyView, GeneradorDeReglasPresenter.MyProxy> {
 
 	public interface MyView extends View {
 
@@ -46,21 +46,20 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 
 		void agregarExpresion(Expresion expresion);
 
+		void iniciarExpresion();
+
 	}
 
 	private Map<String, Concepto> conceptosMap = new HashMap<String, Concepto>();
 	private Map<String, Comparador> comparadoresMap = new HashMap<String, Comparador>();
 
-	// private ListDataProvider<Expresion> dataProvider = new
-	// ListDataProvider<Expresion>();
-
 	@ProxyStandard
-	@NameToken(NameTokens.home)
-	public interface MyProxy extends ProxyPlace<HomePagePresenter> {
+	@NameToken(NameTokens.generadorDeReglas)
+	public interface MyProxy extends ProxyPlace<GeneradorDeReglasPresenter> {
 	}
 
 	@Inject
-	HomePagePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+	GeneradorDeReglasPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
 		super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
 	}
 
@@ -120,49 +119,19 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 
 		getView().agregarExpresion(expresion);
 
-		//
-		// // Create a data provider.
-		// dataProvider = new ListDataProvider<Expresion>();
-		//
-		// // Connect the table to the data provider.
-		// dataProvider.addDataDisplay(expresionesSimples);
-		//
-		// // Add the data to the data provider, which automatically pushes it
-		// to
-		// // the
-		// // widget.
-		// List<Expresion> list = dataProvider.getList();
-		//
-		// list.add(new Expresion("Prestacion es igual a 420101", " ADEMAS "));
-		// list.add(new Expresion("Obra social igual a 220", " O "));
-		// list.add(new Expresion("Afiliado gravado en IVA", ""));
-
 		/**
-		 * Inicializo para agregar una nueva condicion Concepto/ comparador /
+		 * Inicializo para agregar una nueva condicion Concepto/ Comparador /
 		 * Constantes / Regla Escrita
 		 */
-		// THISFORM.edtCondicion.Value=""
-		// thisform.cmbconcepto.DisplayValue=""
-		// .concepto=.F.
-		// thisform.cmboperadores.DisplayValue=""
-		// .operador=.F.
-		// thisform.edtlistaConstantes.Value=""
-		// .constante=.F.
-		// .concatenador=.F.
-		//
+		getView().iniciarExpresion();
 
 		/**
+		 * 
 		 * Recorro la coleccion de ( expresion / concatenador) y vuelvo a
 		 * escribir la regla +
 		 * " Si concepto comparador constante/s concatenador "
 		 */
-
-		// * Tengo que agregar cada regla
-		// * oRegla()
-		// *'Concepto = "420101" AND [2] = 220'
-		// * Expresion concatenador: [1] = "420101" AND
-		// *aReglas(1)=CREATEOBJECT("Regla",'[1] = "420101" AND [2] = 220',159)
-		// ENDWITH
+		// TODO Escribir la regla en base a list<Expresion> del celltable
 
 	}
 
