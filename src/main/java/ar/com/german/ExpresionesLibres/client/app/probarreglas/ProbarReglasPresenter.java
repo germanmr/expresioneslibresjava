@@ -10,10 +10,15 @@ import ar.com.german.ExpresionesLibres.client.place.NameTokens;
 import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionAction;
+import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionResult;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -28,7 +33,7 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 
 	}
 
-	private Resolutor resolutor;
+	private DispatchAsync dispatchAsync;
 
 	@ProxyStandard
 	@NameToken(NameTokens.probador)
@@ -36,8 +41,9 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 	}
 
 	@Inject
-	ProbarReglasPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+	ProbarReglasPresenter(EventBus eventBus, MyView view, MyProxy proxy, final DispatchAsync dispatchAsync) {
 		super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
+		this.dispatchAsync = dispatchAsync;
 	}
 
 	@Override
@@ -49,7 +55,20 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 			public void onClick(ClickEvent event) {
 				// resolutor.obtenerResultado(conceptos, reglas,
 				// conceptosIngresados);
+				dispatchAsync.execute(new ObtenerDesicionAction(), new AsyncCallback<ObtenerDesicionResult>() {
 
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
+
+					}
+
+					@Override
+					public void onSuccess(ObtenerDesicionResult result) {
+						Window.alert("Exito este es el resultado" + result.getResultado());
+
+					}
+				});
 			}
 		});
 
