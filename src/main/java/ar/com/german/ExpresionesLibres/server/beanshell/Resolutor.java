@@ -3,6 +3,7 @@ package ar.com.german.ExpresionesLibres.server.beanshell;
 import java.io.PrintStream;
 import java.util.List;
 
+import com.google.gwt.thirdparty.guava.common.base.Preconditions;
 import com.google.inject.Inject;
 
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
@@ -38,11 +39,15 @@ public final class Resolutor {
 	 * @return
 	 */
 	public <R, T> R obtenerResultado(List<Concepto> conceptos, List<Regla<Integer>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
-		System.out.println(conceptos.toString());
+		// System.out.println(conceptos.toString());
 		System.out.println(reglas.toString());
-		System.out.println(conceptosIngresados.toString());
+		// System.out.println(conceptosIngresados.toString());
 
 		try {
+
+			Preconditions.checkArgument(!conceptos.isEmpty(), "Los conceptos no tienen que estar vacios");
+			Preconditions.checkArgument(!reglas.isEmpty(), "Las reglas no tienen que estar vacias");
+			Preconditions.checkArgument(!conceptosIngresados.isEmpty(), "Los conceptos ingresados no tienen que estar vacios");
 
 			boolean condicion = false;
 
@@ -50,17 +55,21 @@ public final class Resolutor {
 			for (Regla<Integer> regla : reglas) {
 
 				// Para cada concepto de la regla le asigno un valor
-				for (TieneConceptoConValor concepto : conceptosIngresados) {
-					interpreter.set(concepto.getConcepto().getIdentificacion(), concepto.getValor());
+				for (TieneConceptoConValor conceptoIngresado : conceptosIngresados) {
+					System.out.println("Concepto seteado: " + conceptoIngresado.getConcepto().getIdentificacion());
+					System.out.println("Valor seteado: " + conceptoIngresado.getValor());
+					interpreter.set(conceptoIngresado.getConcepto().getIdentificacion(), conceptoIngresado.getValor());
 				}
+
+				System.out.println(regla.getReglaReal());
 
 				String evaluar = "condicion=" + regla.getReglaReal() + " ? true : false ;";
 
+				System.out.println("Expresion a evaluar: " + evaluar);
+
 				condicion = (boolean) interpreter.eval(evaluar);
 
-				System.out.println(evaluar);
-
-				System.out.println(condicion);
+				System.out.println("Condicion obtenida: " + condicion);
 
 				if (condicion) {
 					// TODO ejecutar un comando??
@@ -72,11 +81,13 @@ public final class Resolutor {
 			return null;
 
 		} catch (EvalError e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}
-
 	// FUNCTION prepararReglaParaSerEvaluada(aConceptos,regla AS Regla)
 	//
 	// * Tengo que reemplazar en la expresion con los elementos reales para cada

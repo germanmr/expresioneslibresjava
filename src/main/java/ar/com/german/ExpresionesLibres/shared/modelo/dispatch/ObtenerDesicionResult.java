@@ -6,20 +6,20 @@ public class ObtenerDesicionResult implements Result {
 
 	private static final long serialVersionUID = 1L;
 
-	private String resultado;
+	private Integer resultado;
 
 	public ObtenerDesicionResult() {
 	}
 
-	public ObtenerDesicionResult(String resultado) {
+	public ObtenerDesicionResult(Integer resultado) {
 		this.resultado = resultado;
 	}
 
-	public String getResultado() {
+	public Integer getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(String resultado) {
+	public void setResultado(Integer resultado) {
 		this.resultado = resultado;
 	}
 

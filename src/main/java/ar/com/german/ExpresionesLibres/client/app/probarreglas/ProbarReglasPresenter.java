@@ -65,7 +65,7 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 
 					@Override
 					public void onSuccess(ObtenerDesicionResult result) {
-						Window.alert("Exito este es el resultado" + result.getResultado());
+						Window.alert("Exito este es el resultado: " + result.getResultado().toString());
 
 					}
 				});

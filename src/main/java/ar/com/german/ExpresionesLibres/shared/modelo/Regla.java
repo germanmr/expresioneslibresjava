@@ -41,7 +41,6 @@ public final class Regla<T> {
 	}
 
 	public String getReglaReal() {
-		expresiones.get(0);
 		StringBuilder builder = new StringBuilder();
 		for (Expresion expresion : expresiones) {
 			builder.append(expresion.obtenerExpresionReal());

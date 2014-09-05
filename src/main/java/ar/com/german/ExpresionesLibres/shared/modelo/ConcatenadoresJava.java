@@ -6,7 +6,7 @@ public enum ConcatenadoresJava {
 	// &&
 	O(" O "),
 	// ||
-	NADA("");
+	NINGUNO("");
 
 	private final String descripcion;
 

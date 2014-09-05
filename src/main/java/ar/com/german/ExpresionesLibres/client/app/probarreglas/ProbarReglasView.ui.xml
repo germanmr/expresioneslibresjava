@@ -3,7 +3,9 @@
 	<g:HTMLPanel>
 
 		Aca cargamos conceptos para poder probar si las reglas andan!!!
-
+		
+		<c:CellTable ui:field="lista"></c:CellTable>
+		
 		<g:Label>Prestacion</g:Label>
 		<g:TextBox></g:TextBox>
 		<g:Label>Obra Social</g:Label>
@@ -22,7 +24,7 @@
 		<g:TextBox></g:TextBox>
 		<g:Label>afiliadoGravadoIVA</g:Label>
 		<g:CheckBox></g:CheckBox>
-		
+
 		<g:Button ui:field="decidir">Decidir</g:Button>
 
 	</g:HTMLPanel>

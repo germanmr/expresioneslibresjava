@@ -19,8 +19,6 @@ public final class Concepto {
 
 	List<String> operadoresValidos;
 
-	// OperadorComparacion
-
 	public Concepto() {
 	}
 

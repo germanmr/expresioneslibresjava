@@ -50,7 +50,7 @@ public class ResolutorTest {
 		expresiones.add(new Expresion(conceptoPrestacion, new Comparador(" ES IGUAL A ", OperadoresSimbolicos.IGUAL), "420101",
 				new Concatenador(" Ademas ", ConcatenadoresJava.ADEMAS)));
 		expresiones.add(new Expresion(conceptoObraSocial, new Comparador(" ES IGUAL A ", OperadoresSimbolicos.IGUAL), "220",
-				new Concatenador(" Ademas ", ConcatenadoresJava.NADA)));
+				new Concatenador(" Ademas ", ConcatenadoresJava.NINGUNO)));
 		List<Regla<Integer>> reglas = new ArrayList<>();
 		reglas.add(new Regla<Integer>(expresiones, 159));
 
