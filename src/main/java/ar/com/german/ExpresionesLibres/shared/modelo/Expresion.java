@@ -1,6 +1,5 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
-
 /**
  * Es una agrupamiento de un {@link Concepto} + un {@link Concatenador} + un
  * valor + mas un {@link Concatenador}
@@ -14,6 +13,7 @@ public final class Expresion {
 	private Comparador comparador;
 	// TODO Hacer de Constante una clase T???
 	private String constante;
+	// private Tienevalor constante;
 	private Concatenador concatenador;
 
 	public Expresion() {
@@ -34,7 +34,8 @@ public final class Expresion {
 	public String obtenerCondicionReal() {
 		String condicionReal;
 
-		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo() + constante + comparador.getSufijo();
+		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo() + concepto.getPrefijo() + constante + concepto.getSufijo()
+				+ comparador.getSufijo();
 
 		return condicionReal;
 
@@ -51,6 +52,12 @@ public final class Expresion {
 		condicionEscrita = "Si " + concepto.getDescripcion() + " " + comparador.getDescripcion() + " " + constante;
 
 		return condicionEscrita;
+
+	}
+
+	public String obtenerExpresionReal() {
+
+		return obtenerCondicionReal() + getConcatenador().getConcatenadorReal();
 
 	}
 

@@ -35,7 +35,7 @@ public final class Concatenador {
 		this.concatenador = concatenador;
 	}
 
-	public String getConcatenadorReal(ConcatenadoresJava concatenador) {
+	public String getConcatenadorReal() {
 
 		String concatenadorReal = "";
 

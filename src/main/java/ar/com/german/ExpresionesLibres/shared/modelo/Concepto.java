@@ -54,9 +54,45 @@ public final class Concepto {
 		this.descripcion = descripcion;
 	}
 
+	public TiposConceptos getTiposConceptos() {
+		return tiposConceptos;
+	}
+
+	public void setTiposConceptos(TiposConceptos tiposConceptos) {
+		this.tiposConceptos = tiposConceptos;
+	}
+
+	public List<String> getOperadoresValidos() {
+		return operadoresValidos;
+	}
+
+	public void setOperadoresValidos(List<String> operadoresValidos) {
+		this.operadoresValidos = operadoresValidos;
+	}
+
 	@Override
 	public String toString() {
 		return "Concepto [identificacion=" + identificacion + ", descripcion=" + descripcion + ", toString()=" + super.toString() + "]";
+	}
+
+	public String getPrefijo() {
+
+		String prefijo = "";
+		if (tiposConceptos.equals(TiposConceptos.CADENA)) {
+			prefijo = "\"";
+		}
+
+		return prefijo;
+	}
+
+	public String getSufijo() {
+		String sufijo = "";
+		if (tiposConceptos.equals(TiposConceptos.CADENA)) {
+			sufijo = "\"";
+		}
+
+		return sufijo;
+
 	}
 
 }

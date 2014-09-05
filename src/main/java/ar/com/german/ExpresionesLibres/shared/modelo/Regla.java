@@ -1,5 +1,7 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
+import java.util.List;
+
 /**
  * Indica una condicion, un conjunto de expresiones simples concatenadas, con un
  * resultado T asociado
@@ -11,23 +13,23 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
 public final class Regla<T> {
 
 	// Es la descripcion de lo necesario para que se cumpla la regla
-	String condicion;
+	List<Expresion> expresiones;
 	T resultado;
 
 	public Regla() {
 	}
 
-	public Regla(String condicion, T resultado) {
-		this.condicion = condicion;
+	public Regla(List<Expresion> expresiones, T resultado) {
+		this.expresiones = expresiones;
 		this.resultado = resultado;
 	}
 
-	public String getCondicion() {
-		return condicion;
+	public List<Expresion> getExpresiones() {
+		return expresiones;
 	}
 
-	public void setCondicion(String condicion) {
-		this.condicion = condicion;
+	public void setExpresiones(List<Expresion> expresiones) {
+		this.expresiones = expresiones;
 	}
 
 	public T getResultado() {
@@ -38,9 +40,18 @@ public final class Regla<T> {
 		this.resultado = resultado;
 	}
 
+	public String getReglaReal() {
+		expresiones.get(0);
+		StringBuilder builder = new StringBuilder();
+		for (Expresion expresion : expresiones) {
+			builder.append(expresion.obtenerExpresionReal());
+		}
+		return builder.toString();
+	}
+
 	@Override
 	public String toString() {
-		return "Regla [condicion=" + condicion + ", resultado=" + resultado + ", toString()=" + super.toString() + "]";
+		return "Regla [expresiones=" + expresiones + ", resultado=" + resultado + ", toString()=" + super.toString() + "]";
 	}
 
 }

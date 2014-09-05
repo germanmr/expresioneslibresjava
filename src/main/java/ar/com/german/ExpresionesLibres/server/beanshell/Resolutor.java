@@ -1,5 +1,6 @@
 package ar.com.german.ExpresionesLibres.server.beanshell;
 
+import java.io.PrintStream;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -36,12 +37,14 @@ public final class Resolutor {
 	 * @param conceptosIngresados
 	 * @return
 	 */
-	public <R, T> R obtenerResultado(List<Concepto> conceptos, List<Regla<Integer>> reglas,
-			List<TieneConceptoConValor> conceptosIngresados) {
+	public <R, T> R obtenerResultado(List<Concepto> conceptos, List<Regla<Integer>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
+		System.out.println(conceptos.toString());
+		System.out.println(reglas.toString());
+		System.out.println(conceptosIngresados.toString());
 
 		try {
 
-			boolean condicion;
+			boolean condicion = false;
 
 			// Para cada regla me fijo si cumple con la condicion
 			for (Regla<Integer> regla : reglas) {
@@ -51,10 +54,13 @@ public final class Resolutor {
 					interpreter.set(concepto.getConcepto().getIdentificacion(), concepto.getValor());
 				}
 
-				System.out.println("condition=" + regla.getCondicion() + " ? true : false ");
+				String evaluar = "condicion=" + regla.getReglaReal() + " ? true : false ;";
 
-				condicion = (boolean) interpreter.eval("condicion=" + regla.getCondicion() + " ? true : false ");
-				// TODO Auto-generated catch block
+				condicion = (boolean) interpreter.eval(evaluar);
+
+				System.out.println(evaluar);
+
+				System.out.println(condicion);
 
 				if (condicion) {
 					// TODO ejecutar un comando??

@@ -4,8 +4,9 @@ public enum ConcatenadoresJava {
 
 	ADEMAS(" ADEMAS "),
 	// &&
-	O(" O ");
+	O(" O "),
 	// ||
+	NADA("");
 
 	private final String descripcion;
 
