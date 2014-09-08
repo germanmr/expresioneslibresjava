@@ -7,19 +7,20 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
  * @author germanmr
  * 
  */
-public final class Expresion {
+public final class Expresion implements Tienevalor {
 
 	private Concepto concepto;
+
 	private Comparador comparador;
 	// TODO Hacer de Constante una clase T???
-	private String constante;
+	private Tienevalor constante;
 	// private Tienevalor constante;
 	private Concatenador concatenador;
 
 	public Expresion() {
 	}
 
-	public Expresion(Concepto concepto, Comparador comparador, String constante, Concatenador concatenador) {
+	public Expresion(Concepto concepto, Comparador comparador, Tienevalor constante, Concatenador concatenador) {
 		this.concepto = concepto;
 		this.comparador = comparador;
 		this.constante = constante;
@@ -34,11 +35,16 @@ public final class Expresion {
 	public String obtenerCondicionReal() {
 		String condicionReal;
 
-		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo() + concepto.getPrefijo() + constante + concepto.getSufijo()
+		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo() + concepto.getPrefijo() + getValor() + concepto.getSufijo()
 				+ comparador.getSufijo();
 
 		return condicionReal;
 
+	}
+
+	@Override
+	public <T> T getValor() {
+		return constante.getValor();
 	}
 
 	/**

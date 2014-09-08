@@ -17,14 +17,15 @@ import bsh.Interpreter;
  * tomar una desicion
  * 
  * @author germanmr
+ * @param <R>
  * 
  */
-public final class Resolutor {
+public final class ResolutorImpl {
 
-	final Interpreter interpreter;
+	private final Interpreter interpreter;
 
 	@Inject
-	public Resolutor(Interpreter interpreter) {
+	public ResolutorImpl(Interpreter interpreter) {
 		this.interpreter = interpreter;
 	}
 
@@ -38,10 +39,7 @@ public final class Resolutor {
 	 * @param conceptosIngresados
 	 * @return
 	 */
-	public <R, T> R obtenerResultado(List<Concepto> conceptos, List<Regla<Integer>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
-		// System.out.println(conceptos.toString());
-		System.out.println(reglas.toString());
-		// System.out.println(conceptosIngresados.toString());
+	public <R> R obtenerResultado(List<Concepto> conceptos, List<Regla<Integer>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
 
 		try {
 
@@ -88,18 +86,6 @@ public final class Resolutor {
 			return null;
 		}
 	}
-	// FUNCTION prepararReglaParaSerEvaluada(aConceptos,regla AS Regla)
-	//
-	// * Tengo que reemplazar en la expresion con los elementos reales para cada
-	// concepto
-	// FOR EACH concepto IN aConceptos
-	//
-	// regla.condicion=STRTRAN(regla.Condicion,'['+ALLTRIM(STR(concepto.codigo))+']',concepto.elementoPrograma)
-	//
-	// ENDFOR
-	//
-	// RETURN regla
-	// ENDFUNC
 
 }
 
@@ -162,14 +148,3 @@ public final class Resolutor {
 // *'CodigoConvenio'+' = ' +'18'+ Y
 // INLIST(CodigoPlanAfiliado,608,609,610,627,628,629,640) Y NO
 // AfiliadoGravadoIva, CodigoObraSocial=193
-//
-//
-// * Lista de condiciones y acciones
-// *CREATE CURSOR cReglas(condicion C(250),valor c(250))
-// *INSERT INTO cReglas(condicion,valor) VALUES('lCodigoPrestacion '+' = '+'
-// "420101" AND lCodigoObraSocial = 220','lCodigoObraSocialArancela'+'='+'220')
-// *INSERT INTO cReglas(condicion,valor) VALUES('[1] = "420101" AND [2] =
-// 220','lCodigoObraSocialArancela'+'='+'220')
-// *INSERT INTO cReglas(condicion,valor) VALUES('[1] = "420101" AND [2] =
-// 220','lCodigoObraSocialArancela'+'='+'220')
-

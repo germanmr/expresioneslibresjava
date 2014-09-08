@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import ar.com.german.ExpresionesLibres.client.TieneValorCadena;
 import ar.com.german.ExpresionesLibres.client.app.ApplicationPresenter;
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
@@ -115,7 +116,8 @@ public class GeneradorDeReglasPresenter extends Presenter<GeneradorDeReglasPrese
 		Comparador comparador = comparadoresMap.get(getView().getComparadorElegido());
 		String valor = getView().getValores();
 
-		Expresion expresion = new Expresion(concepto, comparador, valor, new Concatenador(" Ademas ", ConcatenadoresJava.ADEMAS));
+		Expresion expresion = new Expresion(concepto, comparador, new TieneValorCadena(valor), new Concatenador(" Ademas ",
+				ConcatenadoresJava.ADEMAS));
 
 		getView().agregarExpresion(expresion);
 

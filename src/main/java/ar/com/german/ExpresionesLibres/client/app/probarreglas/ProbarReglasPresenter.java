@@ -1,6 +1,8 @@
 package ar.com.german.ExpresionesLibres.client.app.probarreglas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -9,7 +11,15 @@ import ar.com.german.ExpresionesLibres.client.app.ApplicationPresenter;
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
 import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
+import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
+import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
+import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
+import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
+import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
+import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionAction;
 import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionResult;
 
@@ -53,9 +63,15 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// resolutor.obtenerResultado(conceptos, reglas,
-				// conceptosIngresados);
-				dispatchAsync.execute(new ObtenerDesicionAction(), new AsyncCallback<ObtenerDesicionResult>() {
+
+				// Los conceptos ingresados y sus valores ingresados son:
+				List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
+				conceptosIngresados.add(new ConceptoIngresado<String>(new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA),
+						"420101"));
+				conceptosIngresados.add(new ConceptoIngresado<String>(new Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA),
+						"220"));
+
+				dispatchAsync.execute(new ObtenerDesicionAction(conceptosIngresados), new AsyncCallback<ObtenerDesicionResult>() {
 
 					@Override
 					public void onFailure(Throwable caught) {

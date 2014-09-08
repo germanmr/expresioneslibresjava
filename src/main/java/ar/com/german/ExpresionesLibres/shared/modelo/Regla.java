@@ -8,18 +8,18 @@ import java.util.List;
  * 
  * @author germanmr
  * 
- * @param <T>
+ * @param <R>
  */
-public final class Regla<T> {
+public final class Regla<R> {
 
 	// Es la descripcion de lo necesario para que se cumpla la regla
 	List<Expresion> expresiones;
-	T resultado;
+	R resultado;
 
 	public Regla() {
 	}
 
-	public Regla(List<Expresion> expresiones, T resultado) {
+	public Regla(List<Expresion> expresiones, R resultado) {
 		this.expresiones = expresiones;
 		this.resultado = resultado;
 	}
@@ -32,11 +32,11 @@ public final class Regla<T> {
 		this.expresiones = expresiones;
 	}
 
-	public T getResultado() {
+	public R getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(T resultado) {
+	public void setResultado(R resultado) {
 		this.resultado = resultado;
 	}
 

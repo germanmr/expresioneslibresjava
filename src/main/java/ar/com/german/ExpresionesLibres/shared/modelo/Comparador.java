@@ -28,11 +28,15 @@ public class Comparador {
 	}
 
 	/**
-	 * Obtenemos la expresion qu va antes del valor en una comparacion
+	 * Obtenemos la expresion que va antes del valor en una comparacion
 	 * 
 	 * @return
 	 */
 	public String getPrefijo() {
+
+		/**
+		 * Los comparadores dependen del
+		 */
 
 		String operadorReal = null;
 

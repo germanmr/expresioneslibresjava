@@ -1,0 +1,10 @@
+
+CodigoConvenio
+codigoEspecialidadEfector
+codigoPrestacion
+CodigoObraSocial
+CodigoConvenio
+codigoEspecialidadEfector
+CodigoProfesionPrestador
+MatriculaProfesionalPrestador
+CodigoPlanAfiliado

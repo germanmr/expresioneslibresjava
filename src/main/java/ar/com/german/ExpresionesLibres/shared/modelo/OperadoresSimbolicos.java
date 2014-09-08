@@ -1,21 +1,16 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
+/**
+ * Esta enumeracion esta hecha para poder utilizar los Comparadores de una
+ * manera mas abstracta conta los {@link Concepto} y valores
+ * 
+ * @author germanmr
+ * 
+ */
 public enum OperadoresSimbolicos {
 
-	// .equals() o ==
-	IGUAL("ES IGUAL A "),
-	// <> o !.equals
-	DISTINTO("ES DISTINTO DE "),
-	// <
-	MENOR("ES MENOR QUE "),
-	// <=
-	MENORIGUAL("ES MENOR IGUAL QUE"),
-	// >
-	MAYOR("ES MAYOR QUE "),
-	// >=
-	MAYORIGUAL("ES MAYOR IGUAL QUE "),
-	// .contains() para numeros y cadenas
-	ENTRE("ESTA ENTRE");
+	IGUAL("ES IGUAL A "), DISTINTO("ES DISTINTO DE "), MENOR("ES MENOR QUE "), MENORIGUAL("ES MENOR IGUAL QUE"), MAYOR("ES MAYOR QUE "), MAYORIGUAL(
+			"ES MAYOR IGUAL QUE "), ENTRE("ESTA ENTRE");
 
 	private final String descripcion;
 
@@ -26,7 +21,5 @@ public enum OperadoresSimbolicos {
 	public String getDescripcion() {
 		return descripcion;
 	}
-
-	
 
 }

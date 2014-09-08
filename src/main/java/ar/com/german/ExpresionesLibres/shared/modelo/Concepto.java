@@ -3,7 +3,7 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
 import java.util.List;
 
 /**
- * Es cualquier entidad del modelo de negocio de una {@link Regla}
+ * Es cualquier entidad del modelo de negocio de una {@link Expresion}
  * 
  * @author germanmr
  * 
@@ -17,7 +17,7 @@ public final class Concepto {
 
 	TiposConceptos tiposConceptos;
 
-	List<String> operadoresValidos;
+	List<Comparador> comparadoresValidos;
 
 	public Concepto() {
 	}
@@ -60,17 +60,12 @@ public final class Concepto {
 		this.tiposConceptos = tiposConceptos;
 	}
 
-	public List<String> getOperadoresValidos() {
-		return operadoresValidos;
+	public List<Comparador> getComparadoresValidos() {
+		return comparadoresValidos;
 	}
 
-	public void setOperadoresValidos(List<String> operadoresValidos) {
-		this.operadoresValidos = operadoresValidos;
-	}
-
-	@Override
-	public String toString() {
-		return "Concepto [identificacion=" + identificacion + ", descripcion=" + descripcion + ", toString()=" + super.toString() + "]";
+	public void setComparadoresValidos(List<Comparador> comparadoresValidos) {
+		this.comparadoresValidos = comparadoresValidos;
 	}
 
 	public String getPrefijo() {
