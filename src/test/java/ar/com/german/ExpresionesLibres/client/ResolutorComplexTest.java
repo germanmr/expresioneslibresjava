@@ -6,13 +6,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
-import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
-import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
 import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
-import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorBooleano;
