@@ -1,6 +1,5 @@
-package ar.com.german.ExpresionesLibres.client;
+package ar.com.german.ExpresionesLibres.shared.modelo;
 
-import ar.com.german.ExpresionesLibres.shared.modelo.Tienevalor;
 
 /**
  * 

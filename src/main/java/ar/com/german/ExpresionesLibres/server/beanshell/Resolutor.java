@@ -20,12 +20,12 @@ import bsh.Interpreter;
  * @param <R>
  * 
  */
-public final class ResolutorImpl {
+public final class Resolutor {
 
 	private final Interpreter interpreter;
 
 	@Inject
-	public ResolutorImpl(Interpreter interpreter) {
+	public Resolutor(Interpreter interpreter) {
 		this.interpreter = interpreter;
 	}
 

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import ar.com.german.ExpresionesLibres.client.TieneValorCadena;
 import ar.com.german.ExpresionesLibres.client.app.ApplicationPresenter;
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
@@ -14,6 +13,7 @@ import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorCadena;
 import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 
 import com.google.gwt.event.dom.client.ClickEvent;

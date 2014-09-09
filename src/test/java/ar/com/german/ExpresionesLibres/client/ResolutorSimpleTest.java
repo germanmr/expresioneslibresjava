@@ -4,63 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-
-import ar.com.german.ExpresionesLibres.server.beanshell.ResolutorImpl;
+import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
-import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
-import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
 import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
-import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorBooleano;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorCadena;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorNumero;
 
-public class ResolutorTest extends AbstractTest {
-
-	@Inject
-	ResolutorImpl resolutor;
-
-	private Concepto conceptoConvenio = new Concepto("convenio", "Convenio", TiposConceptos.CADENA);
-
-	private Concepto conceptoEspecialidadEfector = new Concepto("especialidadEfector", "Especialidad del Efector", TiposConceptos.CADENA);
-
-	private Concepto conceptoCodigoProfesionPrestador = new Concepto("profesionPrestador", "Profesion del Prestador", TiposConceptos.CADENA);
-
-	private Concepto conceptoMatriculaProfesionalPrestador = new Concepto("matriculaPrestador", "Matricula del Prestador",
-			TiposConceptos.CADENA);
-
-	private Concepto conceptoPlanAfiliado = new Concepto("planAfiliado", "Plan del Afiliado", TiposConceptos.CADENA);
-
-	@Before
-	public void inicializar() {
-		injector.injectMembers(this);
-	}
+/**
+ * Tests sencillos para el {@link Resolutor}
+ * 
+ * @author germanmr
+ * 
+ */
+public class ResolutorSimpleTest extends ResolutorAbstractTest {
 
 	@Test
 	public void obtenerDesicionConUnConceptosCadenaTest() {
 
 		// Estos son los conceptos
 		List<Concepto> conceptos = new ArrayList<>();
-		Concepto conceptoPrestacion = new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA);
-		conceptos.add(conceptoPrestacion);
+
+		conceptos.add(getConceptoPrestacion());
 
 		// Estas es la regla definida
 		List<Expresion> expresiones = new ArrayList<>();
-		expresiones.add(new Expresion(conceptoPrestacion, new Comparador(" ES IGUAL A ", OperadoresSimbolicos.IGUAL), new TieneValorCadena(
-				"420101"), new Concatenador(" ", ConcatenadoresJava.NINGUNO)));
+		expresiones.add(new Expresion(getConceptoPrestacion(), getComparadorIgual(), new TieneValorCadena("420101"),
+				getConcatenadorNinguno()));
 		List<Regla<Integer>> reglas = new ArrayList<>();
 		reglas.add(new Regla<Integer>(expresiones, 159));
 
 		List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
-		conceptosIngresados.add(new ConceptoIngresado<String>(conceptoPrestacion, "420101"));
+		conceptosIngresados.add(new ConceptoIngresado<String>(getConceptoPrestacion(), "420101"));
 
 		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);
 
@@ -74,18 +56,17 @@ public class ResolutorTest extends AbstractTest {
 
 		// Estos son los conceptos
 		List<Concepto> conceptos = new ArrayList<>();
-		Concepto conceptoObraSocial = new Concepto("obraSocial", "Obra Social", TiposConceptos.NUMERO);
-		conceptos.add(conceptoObraSocial);
+
+		conceptos.add(getConceptoObraSocial());
 
 		// Estas es la regla definida
 		List<Expresion> expresiones = new ArrayList<>();
-		expresiones.add(new Expresion(conceptoObraSocial, new Comparador(" ES IGUAL A ", OperadoresSimbolicos.IGUAL),
-				new TieneValorInteger(220), new Concatenador(" ", ConcatenadoresJava.NINGUNO)));
+		expresiones.add(new Expresion(getConceptoObraSocial(), getComparadorIgual(), new TieneValorNumero(220), getConcatenadorNinguno()));
 		List<Regla<Integer>> reglas = new ArrayList<>();
 		reglas.add(new Regla<Integer>(expresiones, 159));
 
 		List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
-		conceptosIngresados.add(new ConceptoIngresado<Integer>(conceptoObraSocial, 220));
+		conceptosIngresados.add(new ConceptoIngresado<Integer>(getConceptoObraSocial(), 220));
 
 		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);
 
@@ -99,30 +80,22 @@ public class ResolutorTest extends AbstractTest {
 
 		// Estos son los conceptos
 		List<Concepto> conceptos = new ArrayList<>();
-		Concepto conceptoPrestacion = new Concepto("prestacion", "Prestacion", TiposConceptos.BOOLEANO);
-		conceptos.add(conceptoPrestacion);
+		conceptos.add(getConceptoPlanAfiliado());
 
 		// Estas es la regla definida
 		List<Expresion> expresiones = new ArrayList<>();
-		expresiones.add(new Expresion(conceptoPrestacion, new Comparador(" ES IGUAL A ", OperadoresSimbolicos.IGUAL),
-				new TieneValorBooleano(true), new Concatenador(" ", ConcatenadoresJava.NINGUNO)));
+		expresiones.add(new Expresion(getConceptoPlanAfiliado(), getComparadorIgual(), new TieneValorBooleano(true),
+				getConcatenadorNinguno()));
 		List<Regla<Integer>> reglas = new ArrayList<>();
 		reglas.add(new Regla<Integer>(expresiones, 159));
 
 		List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
-		conceptosIngresados.add(new ConceptoIngresado<Boolean>(conceptoPrestacion, true));
+		conceptosIngresados.add(new ConceptoIngresado<Boolean>(getConceptoPlanAfiliado(), true));
 
 		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);
 
 		Assert.assertNotNull(resultado);
 		Assert.assertEquals((Integer) 159, resultado);
-
-	}
-
-	@Test
-	public void obtenerDesicionConConceptosDeDistintoTipoTest() {
-
-		// TODO Hacer
 
 	}
 

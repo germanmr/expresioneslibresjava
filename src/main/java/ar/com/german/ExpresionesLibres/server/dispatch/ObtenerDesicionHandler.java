@@ -2,20 +2,16 @@ package ar.com.german.ExpresionesLibres.server.dispatch;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import ar.com.german.ExpresionesLibres.client.TieneValorCadena;
-import ar.com.german.ExpresionesLibres.client.TieneValorInteger;
 import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
-import ar.com.german.ExpresionesLibres.server.beanshell.ResolutorImpl;
 import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
-import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
 import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorCadena;
 import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionAction;
 import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionResult;
@@ -27,10 +23,10 @@ import com.gwtplatform.dispatch.shared.ActionException;
 
 public class ObtenerDesicionHandler implements ActionHandler<ObtenerDesicionAction, ObtenerDesicionResult> {
 
-	private ResolutorImpl resolutor;
+	private Resolutor resolutor;
 
 	@Inject
-	public ObtenerDesicionHandler(ResolutorImpl resolutor) {
+	public ObtenerDesicionHandler(Resolutor resolutor) {
 		this.resolutor = resolutor;
 	}
 
