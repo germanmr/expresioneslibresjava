@@ -1,27 +1,90 @@
 package ar.com.german.ExpresionesLibres.client;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import org.junit.Assert;
 import org.junit.Test;
+
+import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
+import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
+import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorCadena;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorColeccionNumeros;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorNumero;
 
 public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
 
-	// Regla 1
-	// *'CodigoConvenio'+' = ' +'1'+Y
-	// INLIST(codigoEspecialidadEfector,44,45) Y
-	// codigoPrestacion>='420101' Y codigoPrestacion<='429999' ,
-	// CodigoObraSocial=228
+	@Test
+	public void regla1Test() {
+		// Regla 1
+		// *'CodigoConvenio'+' = ' +'1'+Y
+		// INLIST(codigoEspecialidadEfector,44,45) Y
+		// codigoPrestacion>='420101' Y codigoPrestacion<='429999' ,
+		// CodigoObraSocial=228
+		
+		// Regla 2
+		// *'CodigoConvenio'+' = ' +'1'+Y
+		// INLIST(codigoEspecialidadEfector,44,45) Y
+		// !(codigoPrestacion>='420101' Y
+		// codigoPrestacion<='429999'),
+		// CodigoObraSocial=229
 
-	// Regla 2
-	// *'CodigoConvenio'+' = ' +'1'+Y
-	// INLIST(codigoEspecialidadEfector,44,45) Y
-	// !(codigoPrestacion>='420101' Y
-	// codigoPrestacion<='429999'),
-	// CodigoObraSocial=229
+		// Estos son los conceptos
+		List<Concepto> conceptos = new ArrayList<>();
+		conceptos.add(getConceptoConvenio());
+
+		// Estas es la regla definida
+		// Convenio, especialidad del efector y prestacion
+		List<Expresion> expresiones = new ArrayList<>();
+		// Convenio
+		expresiones.add(new Expresion(getConceptoConvenio(), getComparadorIgual(), new TieneValorNumero(1), getConcatenadorAdemas()));
+
+		// Especialidad efector
+		// SortedSet<Integer> numeros = new TreeSet<>(Arrays.asList(44, 45));
+		expresiones.add(new Expresion(getConceptoEspecialidadEfector(), getComparadorIgual(), new TieneValorNumero(44),
+				getConcatenadorAdemas()));
+		expresiones.add(new Expresion(getConceptoEspecialidadEfector(), getComparadorIgual(), new TieneValorNumero(45),
+				getConcatenadorAdemas()));
+
+		// Prestacion
+		// Rangos, NO HACE FALTA, SON DOS EXPRESIONES !
+		expresiones.add(new Expresion(getConceptoPrestacion(), getComparadorMayorIgual(), new TieneValorCadena("420101"),
+				getConcatenadorAdemas()));
+		expresiones.add(new Expresion(getConceptoPrestacion(), getComparadorMenorIgual(), new TieneValorCadena("429999"),
+				getConcatenadorNinguno()));
+
+		List<Regla<Integer>> reglas = new ArrayList<>();
+		reglas.add(new Regla<Integer>(expresiones, 228));
+
+		List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
+		conceptosIngresados.add(new ConceptoIngresado<Integer>(getConceptoConvenio(), 1));
+		conceptosIngresados.add(new ConceptoIngresado<Integer>(getConceptoEspecialidadEfector(), 44));
+		conceptosIngresados.add(new ConceptoIngresado<String>(getConceptoPrestacion(), "420101"));
+
+		Integer resultado = resolutor.obtenerResultado(conceptos, reglas, conceptosIngresados);
+
+		Assert.assertNotNull(resultado);
+		Assert.assertEquals((Integer) 228, resultado);
+
+	}
+
+	@Test
+	public void regla2Test() {
+
 
 	// Regla 3
 	// 'CodigoConvenio'+' = ' +'1'+Y CodigoProfesionPrestador=4 Y
 	// MatriculaProfesionalPrestador=69211 codigoPrestacion>='420101' Y
 	// codigoPrestacion<='429999' Y CodigoPlanAfiliado=1,
 	// CodigoObraSocial=421
+		
+	}
 
 	// Regla 4
 	// *!* 'CodigoConvenio'+' = ' +'1'+Y CodigoProfesionPrestador=4 Y
@@ -113,8 +176,10 @@ public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
 	@Test
 	public void test() {
 
-		// getResolutor().obtenerResultado(conceptos, reglas,
-		// conceptosIngresados);
+		// Menor igual es -1 o 0
+		// Integer resultado = "2".compareTo("3");
+		//
+		// System.out.println(resultado + "");
 
 	}
 

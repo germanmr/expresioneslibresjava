@@ -14,9 +14,9 @@ public class Comparador {
 	public Comparador() {
 	}
 
-	public Comparador(String descripcion, OperadoresSimbolicos operadorReal) {
+	public Comparador(String descripcion, OperadoresSimbolicos operadorSimbolico) {
 		this.descripcion = descripcion;
-		this.operadorSimbolico = operadorReal;
+		this.operadorSimbolico = operadorSimbolico;
 	}
 
 	public String getDescripcion() {
@@ -32,47 +32,77 @@ public class Comparador {
 	 * 
 	 * @return
 	 */
-	public String getPrefijo() {
+	public String getPrefijo(TiposConceptos tipoConcepto) {
+		// TODO refatorizaaaaaaaaaaaaaaa!!!!!!!!!!
 
 		/**
-		 * Los comparadores dependen del
+		 * Los comparadores dependen del Tio de comparador y el Tipo de dato del
+		 * concepto
 		 */
 
-		String operadorReal = null;
+		String operadorReal = "";
 
 		switch (operadorSimbolico) {
 
 		case IGUAL:
-			// concepto.equals(valor) o concepto==valor
-			operadorReal = ".equals(";
+			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+				operadorReal = "==";
+			} else {
+				operadorReal = ".equals(";
+			}
 			break;
 
 		case DISTINTO:
-			// <> o !.equals
+			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+				operadorReal = "<>";
+			} else {
+				operadorReal = ".equals(";
+			}
 			operadorReal = "<>";
 			break;
 
 		case MENOR:
-			operadorReal = ">";
-			// >
+			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+				operadorReal = ">";
+			} else {
+				operadorReal = ".compareTo(";
+			}
+
 			break;
 
 		case MENORIGUAL:
-			operadorReal = "<=";
-			// <=
+			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+				operadorReal = "<=";
+			} else {
+				operadorReal = ".compareTo(";
+			}
 			break;
 
 		case MAYOR:
-			operadorReal = ">";
-			// >
+			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+				operadorReal = ">";
+			} else {
+				operadorReal = ".equals(";
+			}
+
 			break;
 
 		case MAYORIGUAL:
-			operadorReal = ">=";
-			// >=
+			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+				operadorReal = ">=";
+			} else {
+				operadorReal = ".compareTo(";
+			}
+			// "a".compareTo("b"); // esto da (-1) menor a es menor que b
+			boolean menorque = "a".compareTo("b") == -1 ? true : false;
+			// concepto comparador
+			// transformo a true
+			// "b".compareTo("a"); // esto da (-1) menor
+			// "a".compareTo("b"); // esto da (-1) menor
+
 			break;
 
-		case ENTRE:
+		case ESTANEN:
 			operadorReal = ".contains(";
 			break;
 
@@ -89,20 +119,69 @@ public class Comparador {
 	 * 
 	 * @return
 	 */
-	public String getSufijo() {
-		String operadorReal = null;
+	public String getSufijo(TiposConceptos tipoConcepto) {
+		String operadorReal = "";
 
 		switch (operadorSimbolico) {
 
 		case IGUAL:
-			operadorReal = ")";
+			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+				operadorReal = "";
+			} else {
+				operadorReal = ")";
+			}
+
 			break;
 
 		case DISTINTO:
-			operadorReal = ")";
+
+			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+				operadorReal = "";
+			} else {
+				operadorReal = ")";
+			}
+
 			break;
 
-		case ENTRE:
+		case MENORIGUAL:
+
+			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+				operadorReal = "";
+			} else {
+				operadorReal = ")< 1 ? true : false";
+			}
+
+			break;
+		case MENOR:
+			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+				operadorReal = "";
+			} else {
+				operadorReal = ")< 0 ? true : false";
+			}
+
+			break;
+
+		case MAYORIGUAL:
+
+			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+				operadorReal = "";
+			} else {
+				operadorReal = ")> -1 ? true : false";
+			}
+
+			break;
+
+		case MAYOR:
+
+			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+				operadorReal = "";
+			} else {
+				operadorReal = ")> 0 ? true : false";
+			}
+
+			break;
+
+		case ESTANEN:
 			operadorReal = ")";
 			break;
 

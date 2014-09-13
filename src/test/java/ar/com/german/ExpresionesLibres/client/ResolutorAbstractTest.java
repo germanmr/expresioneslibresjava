@@ -22,16 +22,16 @@ public class ResolutorAbstractTest extends AbstractTest {
 
 	private final Concepto conceptoPrestacion = new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA);
 
-	private final Concepto conceptoConvenio = new Concepto("convenio", "Convenio", TiposConceptos.CADENA);
+	private final Concepto conceptoConvenio = new Concepto("convenio", "Convenio", TiposConceptos.NUMERO);
 
 	private final Concepto conceptoEspecialidadEfector = new Concepto("especialidadEfector", "Especialidad del Efector",
-			TiposConceptos.CADENA);
+			TiposConceptos.NUMERO);
 
 	private final Concepto conceptoCodigoProfesionPrestador = new Concepto("profesionPrestador", "Profesion del Prestador",
-			TiposConceptos.CADENA);
+			TiposConceptos.NUMERO);
 
 	private final Concepto conceptoMatriculaProfesionalPrestador = new Concepto("matriculaPrestador", "Matricula del Prestador",
-			TiposConceptos.CADENA);
+			TiposConceptos.NUMERO);
 
 	private final Concepto conceptoPlanAfiliado = new Concepto("planAfiliado", "Plan del Afiliado", TiposConceptos.NUMERO);
 
@@ -46,6 +46,12 @@ public class ResolutorAbstractTest extends AbstractTest {
 	private final Concatenador concatenadorNinguno = new Concatenador(" Ninguno ", ConcatenadoresJava.NINGUNO);
 
 	private final Comparador comparadorIgual = new Comparador(" ES IGUAL A ", OperadoresSimbolicos.IGUAL);
+
+	private final Comparador comparadorEstaEn = new Comparador("Esta en", OperadoresSimbolicos.ESTANEN);
+
+	private Comparador comparadorMayorIgual = new Comparador(" Mayor igual", OperadoresSimbolicos.MAYORIGUAL);
+
+	private Comparador comparadorMenorIgual = new Comparador(" Menor igual", OperadoresSimbolicos.MENORIGUAL);
 
 	@Inject
 	Resolutor resolutor;
@@ -109,6 +115,26 @@ public class ResolutorAbstractTest extends AbstractTest {
 
 	public Comparador getComparadorIgual() {
 		return comparadorIgual;
+	}
+
+	protected Comparador getComparadorEstaEn() {
+		return comparadorEstaEn;
+	}
+
+	protected Comparador getComparadorMayorIgual() {
+		return comparadorMayorIgual;
+	}
+
+	public Comparador getComparadorMenorIgual() {
+		return comparadorMenorIgual;
+	}
+
+	public void setComparadorMenorIgual(Comparador comparadorMenorIgual) {
+		this.comparadorMenorIgual = comparadorMenorIgual;
+	}
+
+	public void setComparadorMayorIgual(Comparador comparadorMayorIgual) {
+		this.comparadorMayorIgual = comparadorMayorIgual;
 	}
 
 }

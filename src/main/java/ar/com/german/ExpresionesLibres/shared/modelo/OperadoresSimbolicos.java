@@ -10,7 +10,7 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
 public enum OperadoresSimbolicos {
 
 	IGUAL("ES IGUAL A "), DISTINTO("ES DISTINTO DE "), MENOR("ES MENOR QUE "), MENORIGUAL("ES MENOR IGUAL QUE"), MAYOR("ES MAYOR QUE "), MAYORIGUAL(
-			"ES MAYOR IGUAL QUE "), ENTRE("ESTA ENTRE");
+			"ES MAYOR IGUAL QUE "), ESTANEN(" ESTA EN ");
 
 	private final String descripcion;
 

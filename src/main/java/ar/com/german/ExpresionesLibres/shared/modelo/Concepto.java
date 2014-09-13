@@ -15,6 +15,10 @@ public final class Concepto {
 	// Es un nombre decriptivo
 	String descripcion;
 
+	/**
+	 * Es basicamente el tiop de dato a alto nivel( numero, cadena, booleano)
+	 * para relacionar a la hora de comparar
+	 */
 	TiposConceptos tiposConceptos;
 
 	List<Comparador> comparadoresValidos;

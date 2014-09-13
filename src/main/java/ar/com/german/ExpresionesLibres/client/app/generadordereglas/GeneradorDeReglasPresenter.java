@@ -86,7 +86,7 @@ public class GeneradorDeReglasPresenter extends Presenter<GeneradorDeReglasPrese
 		comparadoresMap.put(" ES MENOR IGUAL QUE ", new Comparador("ES MENOR IGUAL QUE", OperadoresSimbolicos.MENORIGUAL));
 		comparadoresMap.put(" ES MAYOR QUE ", new Comparador(" ES MAYOR QUE ", OperadoresSimbolicos.MAYOR));
 		comparadoresMap.put(" ES MAYOR IGUAL QUE ", new Comparador(" ES MAYOR IGUAL QUE ", OperadoresSimbolicos.MAYORIGUAL));
-		comparadoresMap.put(" ESTA ENTRE ", new Comparador(" ESTA ENTRE ", OperadoresSimbolicos.ENTRE));
+		comparadoresMap.put(" ESTA ENTRE ", new Comparador(" ESTA ENTRE ", OperadoresSimbolicos.ESTANEN));
 
 		getView().aregarComparadores(comparadoresMap);
 

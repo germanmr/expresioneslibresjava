@@ -1,5 +1,7 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
+import java.util.List;
+
 /**
  * Es una agrupamiento de un {@link Concepto} + un {@link Concatenador} + un
  * valor + mas un {@link Concatenador}
@@ -10,11 +12,8 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
 public final class Expresion implements Tienevalor {
 
 	private Concepto concepto;
-
 	private Comparador comparador;
-	// TODO Hacer de Constante una clase T???
 	private Tienevalor constante;
-	// private Tienevalor constante;
 	private Concatenador concatenador;
 
 	public Expresion() {
@@ -35,8 +34,8 @@ public final class Expresion implements Tienevalor {
 	public String obtenerCondicionReal() {
 		String condicionReal;
 
-		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo() + concepto.getPrefijo() + getValor() + concepto.getSufijo()
-				+ comparador.getSufijo();
+		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo(concepto.getTiposConceptos()) + concepto.getPrefijo()
+				+ getValor() + concepto.getSufijo() + comparador.getSufijo(concepto.getTiposConceptos());
 
 		return condicionReal;
 

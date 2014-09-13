@@ -1,6 +1,5 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
-
 public class TieneValorNumero implements Tienevalor {
 
 	private Integer constante;
