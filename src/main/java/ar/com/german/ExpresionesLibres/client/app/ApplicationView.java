@@ -18,6 +18,8 @@ package ar.com.german.ExpresionesLibres.client.app;
 
 import javax.inject.Inject;
 
+import org.vectomatic.file.FileUploadExt;
+
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.IsWidget;

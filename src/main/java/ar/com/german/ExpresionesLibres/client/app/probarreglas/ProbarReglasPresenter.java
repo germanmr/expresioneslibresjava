@@ -1,23 +1,14 @@
 package ar.com.german.ExpresionesLibres.client.app.probarreglas;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import ar.com.german.ExpresionesLibres.client.app.ApplicationPresenter;
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
-import ar.com.german.ExpresionesLibres.server.beanshell.Resolutor;
-import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
-import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
-import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
-import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
-import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
-import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerDesicionAction;
@@ -59,41 +50,40 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 	@Override
 	protected void onBind() {
 
-		getView().onButtonDecidirAddClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-
-				// Los conceptos ingresados y sus valores ingresados son:
-				List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
-				conceptosIngresados.add(new ConceptoIngresado<String>(new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA),
-						"420101"));
-				conceptosIngresados.add(new ConceptoIngresado<String>(new Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA),
-						"220"));
-
-				dispatchAsync.execute(new ObtenerDesicionAction(conceptosIngresados), new AsyncCallback<ObtenerDesicionResult>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert(caught.getMessage());
-
-					}
-
-					@Override
-					public void onSuccess(ObtenerDesicionResult result) {
-						Window.alert("Exito este es el resultado: " + result.getResultado().toString());
-
-					}
-				});
-			}
-		});
+		// getView().onButtonDecidirAddClickHandler(new ClickHandler() {
+		//
+		// @Override
+		// public void onClick(ClickEvent event) {
+		//
+		// // Los conceptos ingresados y sus valores ingresados son:
+		// List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
+		// conceptosIngresados.add(new ConceptoIngresado<String>(new
+		// Concepto("prestacion", "Prestacion", TiposConceptos.CADENA),
+		// "420101"));
+		// conceptosIngresados.add(new ConceptoIngresado<String>(new
+		// Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA),
+		// "220"));
+		//
+		// dispatchAsync.execute(new ObtenerDesicionAction(conceptosIngresados),
+		// new AsyncCallback<ObtenerDesicionResult>() {
+		//
+		// @Override
+		// public void onFailure(Throwable caught) {
+		// Window.alert(caught.getMessage());
+		//
+		// }
+		//
+		// @Override
+		// public void onSuccess(ObtenerDesicionResult result) {
+		// Window.alert("Exito este es el resultado: " +
+		// result.getResultado().toString());
+		//
+		// }
+		// });
+		// }
+		// });
 
 		super.onBind();
 	}
 
-	@Override
-	protected void onReset() {
-
-		super.onReset();
-	}
 }

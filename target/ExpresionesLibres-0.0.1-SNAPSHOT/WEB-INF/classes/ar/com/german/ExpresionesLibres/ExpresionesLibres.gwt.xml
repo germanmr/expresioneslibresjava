@@ -9,6 +9,10 @@
 
 	<inherits name='com.google.gwt.user.theme.standard.Standard' />
 
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+
+	<inherits name='org.vectomatic.libgwtfile' />
+
 	<!-- Other module inherits -->
 
 	<!-- Specify the app entry point class. -->

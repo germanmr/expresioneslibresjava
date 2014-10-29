@@ -16,13 +16,27 @@ package ar.com.german.ExpresionesLibres.client.app;
  * the License.
  */
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import org.vectomatic.file.Blob;
+import org.vectomatic.file.ErrorCode;
+import org.vectomatic.file.File;
+import org.vectomatic.file.FileError;
+import org.vectomatic.file.FileReader;
+import org.vectomatic.file.events.LoadEndEvent;
+import org.vectomatic.file.events.LoadEndHandler;
+
+import ar.com.german.ExpresionesLibres.client.place.NameTokens;
+
 import com.google.gwt.event.shared.GwtEvent.Type;
+import com.google.gwt.user.client.Window;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ContentSlot;
+import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
@@ -35,6 +49,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 	public static final Type<RevealContentHandler<?>> SLOT_SetMainContent = new Type<RevealContentHandler<?>>();
 
 	@ProxyStandard
+	@NameToken(NameTokens.inicio)
 	public interface MyProxy extends Proxy<ApplicationPresenter> {
 	}
 
@@ -48,4 +63,5 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
 		super.onBind();
 	}
+
 }

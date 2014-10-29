@@ -121,11 +121,18 @@
 			<version>0.4.0.ALPHA-3</version>
 		</dependency>
 
-	<!-- <dependency> -->
-<!-- 			<groupId>org.beanshell</groupId> -->
-<!-- 			<artifactId>bsh</artifactId> -->
-<!-- 			<version>2.0b5</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.vectomatic</groupId>
+			<artifactId>lib-gwt-file</artifactId>
+			<version>0.3.4</version>
+		</dependency>
+
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.beanshell</groupId> -->
+		<!-- <artifactId>bsh</artifactId> -->
+		<!-- <version>2.0b5</version> -->
+		<!-- </dependency> -->
 
 
 	</dependencies>

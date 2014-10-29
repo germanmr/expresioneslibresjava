@@ -19,8 +19,9 @@ public class ClientModule extends AbstractPresenterModule {
 		install(new ApplicationModule());
 
 		// bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.generadorDeReglas);
-		bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.probador);
-		bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.generadorDeReglas);
+		// bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.probador);
+		bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.probador);
+		bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.filesystem);
 		bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.generadorDeReglas);
 
 	}
