@@ -24,10 +24,10 @@ public class ObtenerEntidadDeCsvHandler implements ActionHandler<ObtenerEntidadD
 		scanner.useDelimiter(",");
 
 		while (scanner.hasNext()) {
+			System.out.println("linea nueva");
 			System.out.print(scanner.next() + "|");
 		}
 
-		// Do not forget to close the scanner
 		scanner.close();
 
 		return new ObtenerEntidadDeCsvResult();

@@ -1,7 +1,20 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:f="urn:import:org.vectomatic.file">
+	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:f="urn:import:org.vectomatic.file"
+	xmlns:a="urn:import:java.awt">
 
-	<g:SimplePanel ui:field="main" />
+	<g:HTMLPanel>
+
+		<g:MenuBar>
+
+			<g:MenuItem ui:field="generarReglas" text="Generador de Reglas" />
+			<g:MenuItem ui:field="probarReglas" text="Probar reglas" />
+			<g:MenuItem ui:field="archivos" text="Procesar archivos en el Browser" />
+
+		</g:MenuBar>
+
+		<g:SimplePanel ui:field="main" />
 
 
+
+	</g:HTMLPanel>
 </ui:UiBinder>
