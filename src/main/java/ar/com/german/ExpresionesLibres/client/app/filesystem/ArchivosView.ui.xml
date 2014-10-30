@@ -1,9 +1,14 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:c="urn:import:com.google.gwt.user.cellview.client"
-	xmlns:f="urn:import:org.vectomatic.file">
+	xmlns:f="urn:import:org.vectomatic.file" xmlns:cell="urn:import:com.google.gwt.cell.client">
 
+	<g:HTMLPanel>
 
-	<f:FileUploadExt ui:field="fileUpload"></f:FileUploadExt>
+		<f:FileUploadExt ui:field="fileUpload"></f:FileUploadExt>
 
+		<g:TextArea ui:field="resultado" />
 
+		<g:Button ui:field="enviar" text="el 69" />
+
+	</g:HTMLPanel>
 </ui:UiBinder>

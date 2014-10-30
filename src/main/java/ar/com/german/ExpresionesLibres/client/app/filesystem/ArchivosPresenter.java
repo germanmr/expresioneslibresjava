@@ -24,13 +24,17 @@ import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorCadena;
 import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
+import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerEntidadDeCsvAction;
+import ar.com.german.ExpresionesLibres.shared.modelo.dispatch.ObtenerEntidadDeCsvResult;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -41,7 +45,13 @@ public class ArchivosPresenter extends Presenter<ArchivosPresenter.MyView, Archi
 
 	public interface MyView extends View {
 
+		void addOnEnviarClickHandler(ClickHandler clickHandler);
+
+		String getDatos();
+
 	}
+
+	DispatchAsync dispatcher;
 
 	@ProxyStandard
 	@NameToken(NameTokens.filesystem)
@@ -49,14 +59,39 @@ public class ArchivosPresenter extends Presenter<ArchivosPresenter.MyView, Archi
 	}
 
 	@Inject
-	ArchivosPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+	ArchivosPresenter(EventBus eventBus, MyView view, MyProxy proxy, final DispatchAsync dispatcher) {
 		super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
+		this.dispatcher = dispatcher;
 	}
 
 	@Override
 	protected void onBind() {
 
-		// getView().addUploadFileHandler(new change)
+		getView().addOnEnviarClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+
+				dispatcher.execute(new ObtenerEntidadDeCsvAction(getView().getDatos()), new AsyncCallback<ObtenerEntidadDeCsvResult>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("El arco iris no salio");
+
+					}
+
+					@Override
+					public void onSuccess(ObtenerEntidadDeCsvResult result) {
+						System.out.println("********************************");
+						System.out.println("********************************");
+						System.out.println("********************************");
+						System.out.println("Aca volveria lo que vuelva");
+
+					}
+				});
+
+			}
+		});
 
 		super.onBind();
 	}

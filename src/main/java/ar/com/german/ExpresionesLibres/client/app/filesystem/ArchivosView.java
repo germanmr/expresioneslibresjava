@@ -17,10 +17,13 @@ import org.vectomatic.file.events.LoadEndHandler;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
@@ -32,9 +35,17 @@ public class ArchivosView extends ViewImpl implements ArchivosPresenter.MyView {
 	@UiField
 	FileUploadExt fileUpload;
 
+	@UiField
+	TextArea resultado;
+
+	@UiField
+	Button enviar;
+
 	FileReader reader;
 	List<File> readQueue;
 	protected boolean useTypedArrays = true;
+
+	private String datos;
 
 	@Inject
 	ArchivosView(Binder uiBinder) {
@@ -54,8 +65,11 @@ public class ArchivosView extends ViewImpl implements ArchivosPresenter.MyView {
 					if (readQueue.size() > 0) {
 						File file = readQueue.get(0);
 						try {
+							resultado.setText("");
 							String result = reader.getStringResult();
 							System.out.println(result);
+							resultado.setText(result);
+							datos = result;
 
 							GWT.log("Archivo=" + result);
 
@@ -106,33 +120,41 @@ public class ArchivosView extends ViewImpl implements ArchivosPresenter.MyView {
 			File file = readQueue.get(0);
 			String type = file.getType();
 			try {
-				if ("image/svg+xml".equals(type)) {
-					reader.readAsText(file);
-				} else if (type.startsWith("image/png")) {
-					// Do not use the FileReader for PNG.
-					// Take advantage of the fact the browser can
-					// provide a directly usable blob:// URL
-					// imagePanel.add(createThumbnail(file));
-					readQueue.remove(0);
-					readNextFile();
-				} else if (type.startsWith("image/")) {
-					// For other image types (GIF, JPEG), load them
-					// as typed arrays
-					if (useTypedArrays) {
-						reader.readAsArrayBuffer(file);
-					} else {
-						reader.readAsBinaryString(file);
-					}
-				} else if (type.startsWith("text/")) {
-					// If the file is larger than 1kb, read only the first 1000
-					// characters
-					// to demonstrate file slicing
-					Blob blob = file;
-					if (file.getSize() > 0) {
-						blob = file.slice(0, 900000000, "text/plain; charset=utf-8");
-					}
-					reader.readAsText(blob);
+				// if ("image/svg+xml".equals(type)) {
+				// reader.readAsText(file);
+				// } else if (type.startsWith("image/png")) {
+				// // Do not use the FileReader for PNG.
+				// // Take advantage of the fact the browser can
+				// // provide a directly usable blob:// URL
+				// // imagePanel.add(createThumbnail(file));
+				// readQueue.remove(0);
+				// readNextFile();
+				// } else if (type.startsWith("image/")) {
+				// // For other image types (GIF, JPEG), load them
+				// // as typed arrays
+				// if (useTypedArrays) {
+				// reader.readAsArrayBuffer(file);
+				// } else {
+				// reader.readAsBinaryString(file);
+				// }
+				// } else if (type.startsWith("text/")) {
+				// // If the file is larger than 1kb, read only the first 1000
+				// // characters
+				// // to demonstrate file slicing
+				// Blob blob = file;
+				// if (file.getSize() > 0) {
+				// blob = file.slice(0, 900000000, "text/plain; charset=utf-8");
+				// }
+				// reader.readAsText(blob);
+				// }
+
+				Blob blob = file;
+				if (file.getSize() > 0) {
+					blob = file.slice(0, 900000000, "text/plain; charset=utf-8");
 				}
+
+				reader.readAsText(blob);
+
 			} catch (Throwable t) {
 				// Necessary for FF (see bug
 				// https://bugzilla.mozilla.org/show_bug.cgi?id=701154)
@@ -154,5 +176,17 @@ public class ArchivosView extends ViewImpl implements ArchivosPresenter.MyView {
 			}
 		}
 		Window.alert("File loading error for file: " + file.getName() + "\n" + errorDesc);
+	}
+
+	@Override
+	public String getDatos() {
+		return datos;
+
+	}
+
+	@Override
+	public void addOnEnviarClickHandler(ClickHandler clickHandler) {
+		enviar.addClickHandler(clickHandler);
+
 	}
 }
