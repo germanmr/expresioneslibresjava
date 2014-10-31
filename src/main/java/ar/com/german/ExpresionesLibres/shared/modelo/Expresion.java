@@ -54,7 +54,7 @@ public final class Expresion implements Tienevalor {
 	public String obtenerCondicionEscrita() {
 		String condicionEscrita;
 
-		condicionEscrita = "Si " + concepto.getDescripcion() + " " + comparador.getDescripcion() + " " + constante;
+		condicionEscrita = "Si " + concepto.getDescripcion() + " " + comparador.getDescripcion() + " " + constante.getValor();
 
 		return condicionEscrita;
 

@@ -3,15 +3,15 @@
 	<g:HTMLPanel>
 		Si
 		<g:Label> Concepto</g:Label>
-		<g:SuggestBox ui:field="conceptos" width="100" />
+		<g:SuggestBox ui:field="conceptos" width="300px" />
 		<g:Label> Comparador </g:Label>
-		<g:SuggestBox ui:field="comparadores" width="100" />
+		<g:SuggestBox ui:field="comparadores" width="300px" />
 		<g:Label> Valores </g:Label>
-		<g:TextArea ui:field="valores" />
+		<g:TextArea ui:field="valores" width="500px" />
 		<g:Button ui:field="btnAgregarCondicion" text="Agregar Condicion" />
 		<c:CellTable ui:field="expresionesSimples" />
 		<g:Label> Regla </g:Label>
-		<g:TextArea ui:field="regla" />
+		<g:TextArea ui:field="regla" width="1000px" height="100px" />
 		<g:Label> Valor Devuelto </g:Label>
 		<g:TextBox ui:field="valor" />
 	</g:HTMLPanel>

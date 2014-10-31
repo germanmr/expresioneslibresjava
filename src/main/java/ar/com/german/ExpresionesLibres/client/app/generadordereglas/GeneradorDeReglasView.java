@@ -119,6 +119,7 @@ public class GeneradorDeReglasView extends ViewImpl implements GeneradorDeReglas
 	 * concatenador,
 	 */
 	private void crearCellTable() {
+
 		// Esta es la expresion
 		expresionesSimples.addColumn(new TextColumn<Expresion>() {
 
