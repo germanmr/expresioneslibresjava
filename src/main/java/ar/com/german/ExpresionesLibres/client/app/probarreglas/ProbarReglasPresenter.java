@@ -50,40 +50,36 @@ public class ProbarReglasPresenter extends Presenter<ProbarReglasPresenter.MyVie
 	@Override
 	protected void onBind() {
 
-		// getView().onButtonDecidirAddClickHandler(new ClickHandler() {
-		//
-		// @Override
-		// public void onClick(ClickEvent event) {
-		//
-		// // Los conceptos ingresados y sus valores ingresados son:
-		// List<TieneConceptoConValor> conceptosIngresados = new ArrayList<>();
-		// conceptosIngresados.add(new ConceptoIngresado<String>(new
-		// Concepto("prestacion", "Prestacion", TiposConceptos.CADENA),
-		// "420101"));
-		// conceptosIngresados.add(new ConceptoIngresado<String>(new
-		// Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA),
-		// "220"));
-		//
-		// dispatchAsync.execute(new ObtenerDesicionAction(conceptosIngresados),
-		// new AsyncCallback<ObtenerDesicionResult>() {
-		//
-		// @Override
-		// public void onFailure(Throwable caught) {
-		// Window.alert(caught.getMessage());
-		//
-		// }
-		//
-		// @Override
-		// public void onSuccess(ObtenerDesicionResult result) {
-		// Window.alert("Exito este es el resultado: " +
-		// result.getResultado().toString());
-		//
-		// }
-		// });
-		// }
-		// });
+		getView().onButtonDecidirAddClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+
+				// Los conceptos ingresados y sus valores ingresados son:
+				List<TieneConceptoConValor> conceptosIngresados = new ArrayList<TieneConceptoConValor>();
+				conceptosIngresados.add(new ConceptoIngresado<String>(new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA),
+						"420101"));
+				conceptosIngresados.add(new ConceptoIngresado<String>(new Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA),
+						"220"));
+
+				dispatchAsync.execute(new ObtenerDesicionAction(conceptosIngresados), new AsyncCallback<ObtenerDesicionResult>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
+
+					}
+
+					@Override
+					public void onSuccess(ObtenerDesicionResult result) {
+
+						Window.alert("Exito este es el resultado: " + result.getResultado().toString());
+
+					}
+				});
+			}
+		});
 
 		super.onBind();
 	}
-
 }

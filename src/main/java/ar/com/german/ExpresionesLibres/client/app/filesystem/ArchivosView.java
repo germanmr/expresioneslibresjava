@@ -150,12 +150,9 @@ public class ArchivosView extends ViewImpl implements ArchivosPresenter.MyView {
 				// }
 
 				Blob blob = file;
-				// if (file.getSize() > 0) {
 				blob = file.slice(0, 900000000, "text/plain; charset=utf-8");
-				// }
 
 				reader.readAsText(blob);
-				// reader.readAsBinaryString(file);
 
 			} catch (Throwable t) {
 				// Necessary for FF (see bug

@@ -20,9 +20,12 @@ import javax.inject.Inject;
 
 import org.vectomatic.file.FileUploadExt;
 
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
@@ -33,6 +36,9 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
 	@UiField
 	SimplePanel main;
+
+	@UiField
+	MenuBar menu;
 
 	@Inject
 	ApplicationView(Binder uiBinder) {
@@ -47,4 +53,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 			super.setInSlot(slot, content);
 		}
 	}
+
+	@Override
+	public MenuBar getMenuBar() {
+		return menu;
+	}
+	
+	
 }

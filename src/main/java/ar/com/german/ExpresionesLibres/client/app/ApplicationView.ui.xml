@@ -4,11 +4,12 @@
 
 	<g:HTMLPanel>
 
-		<g:MenuBar>
+		<g:MenuBar ui:field="menu">
 
-			<g:MenuItem ui:field="generarReglas" text="Generador de Reglas" />
-			<g:MenuItem ui:field="probarReglas" text="Probar reglas" />
-			<g:MenuItem ui:field="archivos" text="Procesar archivos en el Browser" />
+			<!-- <g:MenuItem ui:field="generarReglas" text="Generador de Reglas" /> -->
+			<!-- <g:MenuItem ui:field="probarReglas" text="Probar reglas" /> -->
+			<!-- <g:MenuItem ui:field="archivos" text="Procesar archivos en el Browser" 
+				/> -->
 
 		</g:MenuBar>
 

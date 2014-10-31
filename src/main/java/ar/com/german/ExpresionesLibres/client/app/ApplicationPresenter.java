@@ -16,33 +16,29 @@ package ar.com.german.ExpresionesLibres.client.app;
  * the License.
  */
 
-import java.util.List;
-
 import javax.inject.Inject;
-
-import org.vectomatic.file.Blob;
-import org.vectomatic.file.ErrorCode;
-import org.vectomatic.file.File;
-import org.vectomatic.file.FileError;
-import org.vectomatic.file.FileReader;
-import org.vectomatic.file.events.LoadEndEvent;
-import org.vectomatic.file.events.LoadEndHandler;
 
 import ar.com.german.ExpresionesLibres.client.place.NameTokens;
 
 import com.google.gwt.event.shared.GwtEvent.Type;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ContentSlot;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
 	public interface MyView extends View {
+
+		MenuBar getMenuBar();
 	}
 
 	@ContentSlot
@@ -53,15 +49,46 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 	public interface MyProxy extends Proxy<ApplicationPresenter> {
 	}
 
+	final private PlaceManager placeManager;
+
 	@Inject
-	ApplicationPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+	ApplicationPresenter(EventBus eventBus, MyView view, MyProxy proxy, final PlaceManager placeManager) {
 		super(eventBus, view, proxy, RevealType.Root);
+		this.placeManager = placeManager;
 	}
 
 	@Override
 	protected void onBind() {
 
-		super.onBind();
-	}
+		MenuItem generadorReglas = new MenuItem("Generador de Reglas", false, new Command() {
 
+			public void execute() {
+				PlaceRequest request = new PlaceRequest.Builder().nameToken(NameTokens.generadorDeReglas).build();
+				placeManager.revealPlace(request);
+			}
+		});
+
+		getView().getMenuBar().addItem(generadorReglas);
+
+		MenuItem probarReglas = new MenuItem("Probar Reglas", false, new Command() {
+			public void execute() {
+				PlaceRequest request = new PlaceRequest.Builder().nameToken(NameTokens.probador).build();
+				placeManager.revealPlace(request);
+			}
+		});
+
+		getView().getMenuBar().addItem(probarReglas);
+
+		MenuItem archivos = new MenuItem("HTML 5 File API", false, new Command() {
+			public void execute() {
+				PlaceRequest request = new PlaceRequest.Builder().nameToken(NameTokens.filesystem).build();
+				placeManager.revealPlace(request);
+			}
+		});
+
+		getView().getMenuBar().addItem(archivos);
+
+		super.onBind();
+
+	}
 }

@@ -25,53 +25,50 @@ public class ProbarReglasView extends ViewImpl implements ProbarReglasPresenter.
 	interface Binder extends UiBinder<Widget, ProbarReglasView> {
 	}
 
-	// @UiField
-	// Button decidir;
-	// @UiField
-	// CellTable<Concepto> lista;
-	//
-	// ListDataProvider<Concepto> dataProvider;
+	@UiField
+	Button decidir;
+
+	@UiField
+	CellTable<Concepto> lista;
+
+	ListDataProvider<Concepto> dataProvider;
 
 	@Inject
 	ProbarReglasView(Binder uiBinder) {
 
 		initWidget(uiBinder.createAndBindUi(this));
-		// Column<Concepto, String> editable = new Column<Concepto, String>(new
-		// TextInputCell()) {
-		//
-		// @Override
-		// public String getValue(Concepto object) {
-		// // return object..get == null ? "" : object.getA();
-		// return object.getIdentificacion() == null ? "" :
-		// object.getIdentificacion();
-		// }
-		// };
-		//
-		// editable.setFieldUpdater(new FieldUpdater<Concepto, String>() {
-		// @Override
-		// public void update(int index, Concepto object, String value) {
-		// // Called when the user changes the value.
-		// object.setDescripcion(value);
-		// System.out.println("Valor: " + value);
-		// // ContactDatabase.get().refreshDisplays();
-		// }
-		// });
-		//
-		// lista.addColumn(editable);
-		// List<Concepto> conceptos = new ArrayList<Concepto>();
-		// conceptos.add(new Concepto("prestacion", "Prestacion",
-		// TiposConceptos.CADENA));
-		// conceptos.add(new Concepto("obraSocial", "Obra Social",
-		// TiposConceptos.CADENA));
-		// // put some data
-		// dataProvider = new ListDataProvider<Concepto>(conceptos);
-		// dataProvider.addDataDisplay(lista);
+		Column<Concepto, String> editable = new Column<Concepto, String>(new TextInputCell()) {
+
+			@Override
+			public String getValue(Concepto object) {
+				// return object..get == null ? "" : object.getA();
+				return object.getIdentificacion() == null ? "" : object.getIdentificacion();
+			}
+		};
+
+		editable.setFieldUpdater(new FieldUpdater<Concepto, String>() {
+			@Override
+			public void update(int index, Concepto object, String value) {
+				// Called when the user changes the value.
+				object.setDescripcion(value);
+				System.out.println("Valor: " + value);
+				// ContactDatabase.get().refreshDisplays();
+			}
+		});
+
+		lista.addColumn(editable);
+		List<Concepto> conceptos = new ArrayList<Concepto>();
+		conceptos.add(new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA));
+		conceptos.add(new Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA));
+		// put some data
+		dataProvider = new ListDataProvider<Concepto>(conceptos);
+		dataProvider.addDataDisplay(lista);
 
 	}
 
 	@Override
 	public void onButtonDecidirAddClickHandler(ClickHandler handler) {
-		// decidir.addClickHandler(handler);
+		decidir.addClickHandler(handler);
 	}
 
 }
