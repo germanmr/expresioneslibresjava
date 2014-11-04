@@ -1,5 +1,11 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
+/**
+ * Esto lo usamos para representar un valor constante numerico
+ * 
+ * @author germanmr
+ * 
+ */
 public class TieneValorNumero implements Tienevalor {
 
 	private Integer constante;

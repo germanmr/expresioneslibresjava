@@ -1,6 +1,5 @@
 package ar.com.german.ExpresionesLibres.server.beanshell;
 
-import java.io.PrintStream;
 import java.util.List;
 
 import com.google.gwt.thirdparty.guava.common.base.Preconditions;
@@ -34,12 +33,14 @@ public final class Resolutor {
 	 * resultado de la regla que coincida o devuelve null si ninguna regla
 	 * coincide con los valores ingresados
 	 * 
+	 * @param <T>
+	 * 
 	 * @param conceptos
 	 * @param reglas
 	 * @param conceptosIngresados
 	 * @return
 	 */
-	public <R> R obtenerResultado(List<Concepto> conceptos, List<Regla<Integer>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
+	public <R, T> R obtenerResultado(List<Concepto> conceptos, List<Regla<T>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
 
 		try {
 
@@ -50,7 +51,7 @@ public final class Resolutor {
 			boolean condicion = false;
 
 			// Para cada regla me fijo si cumple con la condicion
-			for (Regla<Integer> regla : reglas) {
+			for (Regla<T> regla : reglas) {
 
 				// Para cada concepto de la regla le asigno un valor
 				for (TieneConceptoConValor conceptoIngresado : conceptosIngresados) {

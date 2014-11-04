@@ -1,7 +1,5 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
-import java.util.List;
-
 /**
  * Es una agrupamiento de un {@link Concepto} + un {@link Concatenador} + un
  * valor + mas un {@link Concatenador}
@@ -28,7 +26,7 @@ public final class Expresion implements Tienevalor {
 
 	/**
 	 * Obtenemos un {@link String} con la condicion parseada<br>
-	 * Concepto Comparador valor
+	 * Concepto  + Prefijo comparador + Prefijo Concepto
 	 * 
 	 */
 	public String obtenerCondicionReal() {

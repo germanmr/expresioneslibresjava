@@ -33,7 +33,7 @@ public class Comparador {
 	 * @return
 	 */
 	public String getPrefijo(TiposConceptos tipoConcepto) {
-		// TODO refatorizaaaaaaaaaaaaaaa!!!!!!!!!!
+		// TODO REFACTORIZARRRRRRRRR!!!!!!!!!!
 
 		/**
 		 * Los comparadores dependen del Tio de comparador y el Tipo de dato del
@@ -45,56 +45,130 @@ public class Comparador {
 		switch (operadorSimbolico) {
 
 		case IGUAL:
-			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "==";
-			} else {
+
+				break;
+			case BOOLEANO:
+				operadorReal = "==";
+
+				break;
+			case CADENA:
 				operadorReal = ".equals(";
+
+				break;
+			default:
+				break;
 			}
+
 			break;
 
 		case DISTINTO:
-			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
-				operadorReal = "<>";
-			} else {
+
+			switch (tipoConcepto) {
+			case NUMERO:
+				operadorReal = "!=";
+
+				break;
+			case BOOLEANO:
+				operadorReal = "!=";
+
+				break;
+			case CADENA:
 				operadorReal = ".equals(";
+
+				break;
+			default:
+				break;
 			}
-			operadorReal = "<>";
+
 			break;
 
 		case MENOR:
-			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = ">";
-			} else {
+
+				break;
+			case BOOLEANO:
+				operadorReal = null;
+
+				break;
+			case CADENA:
 				operadorReal = ".compareTo(";
+
+				break;
+			default:
+				break;
 			}
 
 			break;
 
 		case MENORIGUAL:
-			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "<=";
-			} else {
+
+				break;
+			case BOOLEANO:
+				operadorReal = null;
+
+				break;
+			case CADENA:
 				operadorReal = ".compareTo(";
+
+				break;
+			default:
+				break;
 			}
+
 			break;
 
 		case MAYOR:
-			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = ">";
-			} else {
+
+				break;
+			case BOOLEANO:
+				operadorReal = null;
+
+				break;
+			case CADENA:
 				operadorReal = ".equals(";
+
+				break;
+			default:
+				break;
 			}
 
 			break;
 
 		case MAYORIGUAL:
-			if (TiposConceptos.NUMERO.equals(tipoConcepto)) {
+
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = ">=";
-			} else {
+
+				break;
+			case BOOLEANO:
+				operadorReal = null;
+
+				break;
+			case CADENA:
 				operadorReal = ".compareTo(";
+
+				break;
+			default:
+				break;
 			}
+
 			// "a".compareTo("b"); // esto da (-1) menor a es menor que b
-			boolean menorque = "a".compareTo("b") == -1 ? true : false;
+			// boolean menorque = "a".compareTo("b") == -1 ? true : false;
 			// concepto comparador
 			// transformo a true
 			// "b".compareTo("a"); // esto da (-1) menor
@@ -119,64 +193,132 @@ public class Comparador {
 	 * 
 	 * @return
 	 */
+	// TODO REFACTORIZAR, a una colecccion ????????
 	public String getSufijo(TiposConceptos tipoConcepto) {
 		String operadorReal = "";
 
 		switch (operadorSimbolico) {
 
 		case IGUAL:
-			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "";
-			} else {
+				break;
+
+			case BOOLEANO:
+				operadorReal = "";
+				break;
+
+			case CADENA:
 				operadorReal = ")";
+				break;
+
+			default:
+				break;
 			}
 
 			break;
 
 		case DISTINTO:
 
-			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "";
-			} else {
+				break;
+
+			case BOOLEANO:
+				operadorReal = "";
+				break;
+
+			case CADENA:
 				operadorReal = ")";
+				break;
+
+			default:
+				break;
 			}
 
 			break;
 
 		case MENORIGUAL:
 
-			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "";
-			} else {
+				break;
+
+			case BOOLEANO:
+				operadorReal = "";
+				break;
+
+			case CADENA:
 				operadorReal = ")< 1 ? true : false";
+				break;
+
+			default:
+				break;
 			}
 
 			break;
+
 		case MENOR:
-			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "";
-			} else {
+				break;
+
+			case BOOLEANO:
+				operadorReal = "";
+				break;
+
+			case CADENA:
 				operadorReal = ")< 0 ? true : false";
+				break;
+
+			default:
+				break;
 			}
 
 			break;
 
 		case MAYORIGUAL:
 
-			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "";
-			} else {
+				break;
+
+			case BOOLEANO:
+				operadorReal = "";
+				break;
+
+			case CADENA:
 				operadorReal = ")> -1 ? true : false";
+				break;
+
+			default:
+				break;
 			}
 
 			break;
 
 		case MAYOR:
-
-			if (tipoConcepto.equals(TiposConceptos.NUMERO)) {
+			switch (tipoConcepto) {
+			case NUMERO:
 				operadorReal = "";
-			} else {
+				break;
+
+			case BOOLEANO:
+				operadorReal = "";
+				break;
+
+			case CADENA:
 				operadorReal = ")> 0 ? true : false";
+				break;
+
+			default:
+				break;
 			}
 
 			break;

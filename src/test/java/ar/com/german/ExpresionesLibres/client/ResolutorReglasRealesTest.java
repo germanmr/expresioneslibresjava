@@ -1,10 +1,7 @@
 package ar.com.german.ExpresionesLibres.client;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,10 +12,11 @@ import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorCadena;
-import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorColeccionNumeros;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneValorNumero;
 
 public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
+
+	// TODO Valores salteados en una lista
 
 	@Test
 	public void regla1Test() {
@@ -27,7 +25,7 @@ public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
 		// INLIST(codigoEspecialidadEfector,44,45) Y
 		// codigoPrestacion>='420101' Y codigoPrestacion<='429999' ,
 		// CodigoObraSocial=228
-		
+
 		// Regla 2
 		// *'CodigoConvenio'+' = ' +'1'+Y
 		// INLIST(codigoEspecialidadEfector,44,45) Y
@@ -47,10 +45,21 @@ public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
 
 		// Especialidad efector
 		// SortedSet<Integer> numeros = new TreeSet<>(Arrays.asList(44, 45));
-		expresiones.add(new Expresion(getConceptoEspecialidadEfector(), getComparadorIgual(), new TieneValorNumero(44),
+
+		expresiones.add(new Expresion(getConceptoEspecialidadEfector(), getComparadorMayorIgual(), new TieneValorNumero(44),
 				getConcatenadorAdemas()));
-		expresiones.add(new Expresion(getConceptoEspecialidadEfector(), getComparadorIgual(), new TieneValorNumero(45),
+		expresiones.add(new Expresion(getConceptoEspecialidadEfector(), getComparadorMenorIgual(), new TieneValorNumero(45),
 				getConcatenadorAdemas()));
+
+		/**
+		 * Esto seria otra regla aparte porque si no tiene que ser especialidad
+		 * igual a 44 o especialidad igual a 45 y tengo que separar en
+		 * parentesis para cada concepto
+		 */
+
+		// expresiones.add(new Expresion(getConceptoEspecialidadEfector(),
+		// getComparadorIgual(), new TieneValorNumero(45),
+		// getConcatenadorAdemas()));
 
 		// Prestacion
 		// Rangos, NO HACE FALTA, SON DOS EXPRESIONES !
@@ -77,13 +86,12 @@ public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
 	@Test
 	public void regla2Test() {
 
+		// Regla 3
+		// 'CodigoConvenio'+' = ' +'1'+Y CodigoProfesionPrestador=4 Y
+		// MatriculaProfesionalPrestador=69211 codigoPrestacion>='420101' Y
+		// codigoPrestacion<='429999' Y CodigoPlanAfiliado=1,
+		// CodigoObraSocial=421
 
-	// Regla 3
-	// 'CodigoConvenio'+' = ' +'1'+Y CodigoProfesionPrestador=4 Y
-	// MatriculaProfesionalPrestador=69211 codigoPrestacion>='420101' Y
-	// codigoPrestacion<='429999' Y CodigoPlanAfiliado=1,
-	// CodigoObraSocial=421
-		
 	}
 
 	// Regla 4
@@ -181,6 +189,15 @@ public class ResolutorReglasRealesTest extends ResolutorAbstractTest {
 		//
 		// System.out.println(resultado + "");
 
-	}
+		boolean condicion = false;
+		if (condicion != true) {
+			System.out.println("Comapro bien el booleano");
+		}
 
+		Integer numero = 0;
+		if (numero != 1) {
+			System.out.println("Comapro bien el numero");
+		}
+
+	}
 }
