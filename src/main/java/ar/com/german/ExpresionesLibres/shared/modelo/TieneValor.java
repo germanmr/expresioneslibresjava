@@ -9,7 +9,7 @@ import java.util.List;
  * @param <T>
  * 
  */
-public interface Tienevalor {
+public interface TieneValor extends TieneTipoValor {
 
 	<T> T getValor();
 

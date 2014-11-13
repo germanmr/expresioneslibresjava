@@ -36,26 +36,26 @@ public class Comparador {
 		// TODO REFACTORIZARRRRRRRRR!!!!!!!!!!
 
 		/**
-		 * Los comparadores dependen del Tio de comparador y el Tipo de dato del
-		 * concepto
+		 * Los comparadores dependen del Tipo de comparador y el Tipo de dato
+		 * del concepto
 		 */
 
-		String operadorReal = "";
+		String prefijoReal = "";
 
 		switch (operadorSimbolico) {
 
 		case IGUAL:
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "==";
+				prefijoReal = "==";
 
 				break;
 			case BOOLEANO:
-				operadorReal = "==";
+				prefijoReal = "==";
 
 				break;
 			case CADENA:
-				operadorReal = ".equals(";
+				prefijoReal = ".equals(";
 
 				break;
 			default:
@@ -68,15 +68,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "!=";
+				prefijoReal = "!=";
 
 				break;
 			case BOOLEANO:
-				operadorReal = "!=";
+				prefijoReal = "!=";
 
 				break;
 			case CADENA:
-				operadorReal = ".equals(";
+				prefijoReal = ".equals(";
 
 				break;
 			default:
@@ -89,15 +89,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = ">";
+				prefijoReal = ">";
 
 				break;
 			case BOOLEANO:
-				operadorReal = null;
+				prefijoReal = null;
 
 				break;
 			case CADENA:
-				operadorReal = ".compareTo(";
+				prefijoReal = ".compareTo(";
 
 				break;
 			default:
@@ -110,15 +110,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "<=";
+				prefijoReal = "<=";
 
 				break;
 			case BOOLEANO:
-				operadorReal = null;
+				prefijoReal = null;
 
 				break;
 			case CADENA:
-				operadorReal = ".compareTo(";
+				prefijoReal = ".compareTo(";
 
 				break;
 			default:
@@ -131,15 +131,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = ">";
+				prefijoReal = ">";
 
 				break;
 			case BOOLEANO:
-				operadorReal = null;
+				prefijoReal = null;
 
 				break;
 			case CADENA:
-				operadorReal = ".equals(";
+				prefijoReal = ".equals(";
 
 				break;
 			default:
@@ -152,15 +152,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = ">=";
+				prefijoReal = ">=";
 
 				break;
 			case BOOLEANO:
-				operadorReal = null;
+				prefijoReal = null;
 
 				break;
 			case CADENA:
-				operadorReal = ".compareTo(";
+				prefijoReal = ".compareTo(";
 
 				break;
 			default:
@@ -177,14 +177,14 @@ public class Comparador {
 			break;
 
 		case ESTANEN:
-			operadorReal = ".contains(";
+			prefijoReal = ".contains(";
 			break;
 
 		default:
 			break;
 		}
 
-		return operadorReal;
+		return prefijoReal;
 
 	}
 
@@ -195,22 +195,22 @@ public class Comparador {
 	 */
 	// TODO REFACTORIZAR, a una colecccion ????????
 	public String getSufijo(TiposConceptos tipoConcepto) {
-		String operadorReal = "";
+		String sufijoReal = "";
 
 		switch (operadorSimbolico) {
 
 		case IGUAL:
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case BOOLEANO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case CADENA:
-				operadorReal = ")";
+				sufijoReal = ")";
 				break;
 
 			default:
@@ -223,15 +223,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case BOOLEANO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case CADENA:
-				operadorReal = ")";
+				sufijoReal = ")";
 				break;
 
 			default:
@@ -244,15 +244,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case BOOLEANO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case CADENA:
-				operadorReal = ")< 1 ? true : false";
+				sufijoReal = ")< 1 ? true : false";
 				break;
 
 			default:
@@ -265,15 +265,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case BOOLEANO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case CADENA:
-				operadorReal = ")< 0 ? true : false";
+				sufijoReal = ")< 0 ? true : false";
 				break;
 
 			default:
@@ -286,15 +286,15 @@ public class Comparador {
 
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case BOOLEANO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case CADENA:
-				operadorReal = ")> -1 ? true : false";
+				sufijoReal = ")> -1 ? true : false";
 				break;
 
 			default:
@@ -306,15 +306,15 @@ public class Comparador {
 		case MAYOR:
 			switch (tipoConcepto) {
 			case NUMERO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case BOOLEANO:
-				operadorReal = "";
+				sufijoReal = "";
 				break;
 
 			case CADENA:
-				operadorReal = ")> 0 ? true : false";
+				sufijoReal = ")> 0 ? true : false";
 				break;
 
 			default:
@@ -324,14 +324,14 @@ public class Comparador {
 			break;
 
 		case ESTANEN:
-			operadorReal = ")";
+			sufijoReal = ")";
 			break;
 
 		default:
 			break;
 		}
 
-		return operadorReal;
+		return sufijoReal;
 
 	}
 

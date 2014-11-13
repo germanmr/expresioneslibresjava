@@ -6,6 +6,7 @@ import com.google.gwt.thirdparty.guava.common.base.Preconditions;
 import com.google.inject.Inject;
 
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.EsComparable;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
 import bsh.EvalError;
@@ -40,7 +41,7 @@ public final class Resolutor {
 	 * @param conceptosIngresados
 	 * @return
 	 */
-	public <R, T> R obtenerResultado(List<Concepto> conceptos, List<Regla<T>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
+	public <R, T> R obtenerResultado(List<EsComparable> conceptos, List<Regla<T>> reglas, List<TieneConceptoConValor> conceptosIngresados) {
 
 		try {
 

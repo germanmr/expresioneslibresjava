@@ -2,11 +2,17 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
 
 import java.util.SortedSet;
 
-public class TieneValorColeccionCadena implements Tienevalor {
+public class TieneValorColeccionCadena implements TieneValor, TieneTipoValor {
 
 	private SortedSet<String> cadenas;
 
+	/**
+	 * Pasar esto a una interfaz para marcar el tipo!!!!!
+	 */
+	private TipoValor tipoValor = TipoValor.COLECCION;
+
 	public TieneValorColeccionCadena(SortedSet<String> cadenas) {
+
 		this.cadenas = cadenas;
 	}
 
@@ -22,6 +28,11 @@ public class TieneValorColeccionCadena implements Tienevalor {
 		}
 		return valores.toString();
 
+	}
+
+	@Override
+	public TipoValor getTipoValor() {
+		return tipoValor;
 	}
 
 }

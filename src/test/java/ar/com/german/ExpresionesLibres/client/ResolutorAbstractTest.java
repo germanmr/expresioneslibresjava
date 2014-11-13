@@ -9,6 +9,7 @@ import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.EsComparable;
 import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
 
@@ -20,24 +21,25 @@ import ar.com.german.ExpresionesLibres.shared.modelo.TiposConceptos;
  */
 public class ResolutorAbstractTest extends AbstractTest {
 
-	private final Concepto conceptoPrestacion = new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA);
+	private final EsComparable conceptoPrestacion = new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA);
 
-	private final Concepto conceptoConvenio = new Concepto("convenio", "Convenio", TiposConceptos.NUMERO);
+	private final EsComparable conceptoConvenio = new Concepto("convenio", "Convenio", TiposConceptos.NUMERO);
 
-	private final Concepto conceptoEspecialidadEfector = new Concepto("especialidadEfector", "Especialidad del Efector",
+	private final EsComparable conceptoEspecialidadEfector = new Concepto("especialidadEfector", "Especialidad del Efector",
 			TiposConceptos.NUMERO);
 
-	private final Concepto conceptoCodigoProfesionPrestador = new Concepto("profesionPrestador", "Profesion del Prestador",
+	private final EsComparable conceptoCodigoProfesionPrestador = new Concepto("profesionPrestador", "Profesion del Prestador",
 			TiposConceptos.NUMERO);
 
-	private final Concepto conceptoMatriculaProfesionalPrestador = new Concepto("matriculaPrestador", "Matricula del Prestador",
+	private final EsComparable conceptoMatriculaProfesionalPrestador = new Concepto("matriculaPrestador", "Matricula del Prestador",
 			TiposConceptos.NUMERO);
 
-	private final Concepto conceptoPlanAfiliado = new Concepto("planAfiliado", "Plan del Afiliado", TiposConceptos.NUMERO);
+	private final EsComparable conceptoPlanAfiliado = new Concepto("planAfiliado", "Plan del Afiliado", TiposConceptos.NUMERO);
 
-	private final Concepto conceptoCondicionAfiliado = new Concepto("condicionAfiliado", "Condicion del Afiliado", TiposConceptos.BOOLEANO);
+	private final EsComparable conceptoCondicionAfiliado = new Concepto("condicionAfiliado", "Condicion del Afiliado",
+			TiposConceptos.BOOLEANO);
 
-	private final Concepto conceptoObraSocial = new Concepto("obraSocial", "Obra Social", TiposConceptos.NUMERO);
+	private final EsComparable conceptoObraSocial = new Concepto("obraSocial", "Obra Social", TiposConceptos.NUMERO);
 
 	private final Concatenador concatenadorAdemas = new Concatenador(" Ademas ", ConcatenadoresJava.ADEMAS);
 
@@ -61,39 +63,35 @@ public class ResolutorAbstractTest extends AbstractTest {
 		injector.injectMembers(this);
 	}
 
-	public Concepto getConceptoConvenio() {
+	protected EsComparable getConceptoConvenio() {
 		return conceptoConvenio;
 	}
 
-	public Concepto getConceptoEspecialidadEfector() {
+	protected EsComparable getConceptoEspecialidadEfector() {
 		return conceptoEspecialidadEfector;
 	}
 
-	public Concepto getConceptoCodigoProfesionPrestador() {
+	protected EsComparable getConceptoCodigoProfesionPrestador() {
 		return conceptoCodigoProfesionPrestador;
 	}
 
-	public Concepto getConceptoMatriculaProfesionalPrestador() {
+	protected EsComparable getConceptoMatriculaProfesionalPrestador() {
 		return conceptoMatriculaProfesionalPrestador;
 	}
 
-	public Concepto getConceptoPlanAfiliado() {
+	protected EsComparable getConceptoPlanAfiliado() {
 		return conceptoPlanAfiliado;
 	}
 
-	public Resolutor getResolutor() {
+	protected Resolutor getResolutor() {
 		return resolutor;
 	}
 
-	public void setResolutor(Resolutor resolutor) {
-		this.resolutor = resolutor;
-	}
-
-	public Concepto getConceptoPrestacion() {
+	protected EsComparable getConceptoPrestacion() {
 		return conceptoPrestacion;
 	}
 
-	public Concepto getConceptoObraSocial() {
+	public EsComparable getConceptoObraSocial() {
 		return conceptoObraSocial;
 	}
 
@@ -109,11 +107,11 @@ public class ResolutorAbstractTest extends AbstractTest {
 		return concatenadorNinguno;
 	}
 
-	public Concepto getConceptoCondicionAfiliado() {
+	public EsComparable getConceptoCondicionAfiliado() {
 		return conceptoCondicionAfiliado;
 	}
 
-	public Comparador getComparadorIgual() {
+	protected Comparador getComparadorIgual() {
 		return comparadorIgual;
 	}
 
@@ -127,14 +125,6 @@ public class ResolutorAbstractTest extends AbstractTest {
 
 	public Comparador getComparadorMenorIgual() {
 		return comparadorMenorIgual;
-	}
-
-	public void setComparadorMenorIgual(Comparador comparadorMenorIgual) {
-		this.comparadorMenorIgual = comparadorMenorIgual;
-	}
-
-	public void setComparadorMayorIgual(Comparador comparadorMayorIgual) {
-		this.comparadorMayorIgual = comparadorMayorIgual;
 	}
 
 }

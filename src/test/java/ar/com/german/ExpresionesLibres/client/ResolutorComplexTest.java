@@ -6,8 +6,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConceptoIngresado;
+import ar.com.german.ExpresionesLibres.shared.modelo.EsComparable;
 import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
@@ -27,15 +27,18 @@ public class ResolutorComplexTest extends ResolutorAbstractTest {
 	public void obtenerDesicionDosConceptosCadenaNumeroTest() {
 
 		// Estos son los conceptos
-		List<Concepto> conceptos = new ArrayList<>();
+		List<EsComparable> conceptos = new ArrayList<>();
 		conceptos.add(getConceptoPrestacion());
 		conceptos.add(getConceptoObraSocial());
 
 		// Estas es la regla definida
+
+		EsComparable tieneValorCadena = new TieneValorCadena("420101");
 		List<Expresion> expresiones = new ArrayList<>();
-		expresiones.add(new Expresion(getConceptoPrestacion(), getComparadorIgual(), new TieneValorCadena("420101"),
-				getConcatenadorAdemas()));
-		expresiones.add(new Expresion(getConceptoObraSocial(), getComparadorIgual(), new TieneValorNumero(220), getConcatenadorNinguno()));
+		expresiones.add(new Expresion(getConceptoPrestacion(), getComparadorIgual(), tieneValorCadena, getConcatenadorAdemas()));
+		EsComparable tieneValorNumero = new TieneValorNumero(220);
+		expresiones.add(new Expresion(getConceptoObraSocial(), getComparadorIgual(), tieneValorNumero, getConcatenadorNinguno()));
+
 		List<Regla<Integer>> reglas = new ArrayList<>();
 		reglas.add(new Regla<Integer>(expresiones, 159));
 
@@ -55,7 +58,7 @@ public class ResolutorComplexTest extends ResolutorAbstractTest {
 	public void obtenerDesicionDosConceptosCadenaBooleanoTest() {
 
 		// Estos son los conceptos
-		List<Concepto> conceptos = new ArrayList<>();
+		List<EsComparable> conceptos = new ArrayList<>();
 		conceptos.add(getConceptoPrestacion());
 		conceptos.add(getConceptoPlanAfiliado());
 
@@ -63,8 +66,8 @@ public class ResolutorComplexTest extends ResolutorAbstractTest {
 		List<Expresion> expresiones = new ArrayList<>();
 		expresiones.add(new Expresion(getConceptoPrestacion(), getComparadorIgual(), new TieneValorCadena("420101"),
 				getConcatenadorAdemas()));
-		expresiones.add(new Expresion(getConceptoCondicionAfiliado(), getComparadorIgual(), new TieneValorBooleano(true),
-				getConcatenadorNinguno()));
+		EsComparable tieneValorBooleano = new TieneValorBooleano(true);
+		expresiones.add(new Expresion(getConceptoCondicionAfiliado(), getComparadorIgual(), tieneValorBooleano, getConcatenadorNinguno()));
 		List<Regla<Integer>> reglas = new ArrayList<>();
 		reglas.add(new Regla<Integer>(expresiones, 159));
 
@@ -84,7 +87,7 @@ public class ResolutorComplexTest extends ResolutorAbstractTest {
 	public void obtenerDesicionDosConceptosNumeroBooleanoTest() {
 
 		// Estos son los conceptos
-		List<Concepto> conceptos = new ArrayList<>();
+		List<EsComparable> conceptos = new ArrayList<>();
 		conceptos.add(getConceptoObraSocial());
 		conceptos.add(getConceptoCondicionAfiliado());
 

@@ -9,20 +9,20 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
  */
 public final class ConceptoIngresado<T> implements TieneConceptoConValor {
 
-	Concepto concepto;
+	EsComparable concepto;
 	T valorIngresado;
 
 	public ConceptoIngresado() {
 	}
 
-	public ConceptoIngresado(Concepto concepto, T valorIngresado) {
+	public ConceptoIngresado(EsComparable concepto, T valorIngresado) {
 		this.concepto = concepto;
 		this.valorIngresado = valorIngresado;
 	}
 
 	@Override
 	public Concepto getConcepto() {
-		return concepto;
+		return (Concepto) concepto;
 	}
 
 	public void setConcepto(Concepto concepto) {
@@ -38,4 +38,8 @@ public final class ConceptoIngresado<T> implements TieneConceptoConValor {
 		this.valorIngresado = valorIngresado;
 	}
 
+	@Override
+	public TipoValor getTipoValor() {
+		return null;
+	}
 }

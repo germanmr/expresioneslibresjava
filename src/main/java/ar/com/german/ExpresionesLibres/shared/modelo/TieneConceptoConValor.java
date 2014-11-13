@@ -6,6 +6,6 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
  * @author germanmr
  *
  */
-public interface TieneConceptoConValor extends TieneConcepto, Tienevalor {
+public interface TieneConceptoConValor extends TieneConcepto, TieneValor {
 
 }

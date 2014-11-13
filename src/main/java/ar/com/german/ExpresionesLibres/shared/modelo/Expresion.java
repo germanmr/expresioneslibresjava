@@ -7,17 +7,18 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
  * @author germanmr
  * 
  */
-public final class Expresion implements Tienevalor {
+public final class Expresion {
 
-	private Concepto concepto;
+	// private Concepto concepto;
+	private EsComparable concepto;
 	private Comparador comparador;
-	private Tienevalor constante;
+	private EsComparable constante;
 	private Concatenador concatenador;
 
 	public Expresion() {
 	}
 
-	public Expresion(Concepto concepto, Comparador comparador, Tienevalor constante, Concatenador concatenador) {
+	public Expresion(EsComparable concepto, Comparador comparador, EsComparable constante, Concatenador concatenador) {
 		this.concepto = concepto;
 		this.comparador = comparador;
 		this.constante = constante;
@@ -26,22 +27,35 @@ public final class Expresion implements Tienevalor {
 
 	/**
 	 * Obtenemos un {@link String} con la condicion parseada<br>
-	 * Concepto  + Prefijo comparador + Prefijo Concepto
+	 * Concepto + Prefijo comparador + Prefijo Concepto + Sufijo()
 	 * 
 	 */
 	public String obtenerCondicionReal() {
-		String condicionReal;
+		String condicionReal = "";
 
-		condicionReal = concepto.getIdentificacion() + comparador.getPrefijo(concepto.getTiposConceptos()) + concepto.getPrefijo()
-				+ getValor() + concepto.getSufijo() + comparador.getSufijo(concepto.getTiposConceptos());
+		switch (constante.getTipoValor()) {
+		case SIMPLE:
+
+			condicionReal = concepto.getIdentificacion() + comparador.getPrefijo(concepto.getTiposConceptos()) + concepto.getPrefijo()
+					+ constante.getValor() + concepto.getSufijo() + comparador.getSufijo(concepto.getTiposConceptos());
+			break;
+
+		case COLECCION:
+
+			// Aca se arma:
+			// colecccionConstante.contains(conceptoIngresado)
+
+			condicionReal = constante.getIdentificacion() + comparador.getPrefijo(concepto.getTiposConceptos()) + constante.getValor()
+					+ comparador.getSufijo(concepto.getTiposConceptos());
+
+			break;
+
+		default:
+			break;
+		}
 
 		return condicionReal;
 
-	}
-
-	@Override
-	public <T> T getValor() {
-		return constante.getValor();
 	}
 
 	/**

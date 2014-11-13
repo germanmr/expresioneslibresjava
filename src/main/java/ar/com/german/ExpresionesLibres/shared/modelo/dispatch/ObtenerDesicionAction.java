@@ -3,7 +3,7 @@ package ar.com.german.ExpresionesLibres.shared.modelo.dispatch;
 import java.util.List;
 
 import ar.com.german.ExpresionesLibres.shared.modelo.TieneConceptoConValor;
-import ar.com.german.ExpresionesLibres.shared.modelo.Tienevalor;
+import ar.com.german.ExpresionesLibres.shared.modelo.TieneValor;
 
 import com.gwtplatform.dispatch.rpc.shared.UnsecuredActionImpl;
 

@@ -8,6 +8,7 @@ import ar.com.german.ExpresionesLibres.shared.modelo.Comparador;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concatenador;
 import ar.com.german.ExpresionesLibres.shared.modelo.ConcatenadoresJava;
 import ar.com.german.ExpresionesLibres.shared.modelo.Concepto;
+import ar.com.german.ExpresionesLibres.shared.modelo.EsComparable;
 import ar.com.german.ExpresionesLibres.shared.modelo.Expresion;
 import ar.com.german.ExpresionesLibres.shared.modelo.OperadoresSimbolicos;
 import ar.com.german.ExpresionesLibres.shared.modelo.Regla;
@@ -33,7 +34,7 @@ public class ObtenerDesicionHandler implements ActionHandler<ObtenerDesicionActi
 	@Override
 	public ObtenerDesicionResult execute(ObtenerDesicionAction action, ExecutionContext context) throws ActionException {
 		// Los conceptos para que el
-		List<Concepto> conceptos = new ArrayList<Concepto>();
+		List<EsComparable> conceptos = new ArrayList<>();
 		Concepto conceptoPrestacion = new Concepto("prestacion", "Prestacion", TiposConceptos.CADENA);
 		conceptos.add(conceptoPrestacion);
 		Concepto conceptoObraSocial = new Concepto("obraSocial", "Obra Social", TiposConceptos.CADENA);

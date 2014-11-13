@@ -6,11 +6,13 @@ package ar.com.german.ExpresionesLibres.shared.modelo;
  * @author germanmr
  * 
  */
-public class TieneValorNumero implements Tienevalor {
+public class TieneValorNumero implements EsComparable {
 
 	private Integer constante;
+	private TipoValor tipoValor = TipoValor.SIMPLE;
 
 	public TieneValorNumero(Integer constante) {
+
 		this.constante = constante;
 	}
 
@@ -19,4 +21,44 @@ public class TieneValorNumero implements Tienevalor {
 		return constante;
 	}
 
+	@Override
+	public TipoValor getTipoValor() {
+		return tipoValor;
+	}
+
+	@Override
+	public String getIdentificacion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPrefijo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getSufijo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TiposConceptos getTiposConceptos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDescripcion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Concepto getConcepto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

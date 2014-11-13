@@ -8,15 +8,18 @@ import java.util.List;
  * @author germanmr
  * 
  */
-public final class Concepto {
+public final class Concepto implements EsComparable {
 
 	// Se utiliza para identificar al concepto en la regla
 	String identificacion;
+
 	// Es un nombre decriptivo
 	String descripcion;
 
+	private TipoValor tipoValor = TipoValor.COLECCION;
+
 	/**
-	 * Es basicamente el tiop de dato a alto nivel( numero, cadena, booleano)
+	 * Es basicamente el tipo de dato a alto nivel( numero, cadena, booleano)
 	 * para relacionar a la hora de comparar
 	 */
 	TiposConceptos tiposConceptos;
@@ -40,6 +43,7 @@ public final class Concepto {
 		this.tiposConceptos = tiposConceptos;
 	}
 
+	@Override
 	public String getIdentificacion() {
 		return identificacion;
 	}
@@ -56,6 +60,7 @@ public final class Concepto {
 		this.descripcion = descripcion;
 	}
 
+	@Override
 	public TiposConceptos getTiposConceptos() {
 		return tiposConceptos;
 	}
@@ -72,6 +77,7 @@ public final class Concepto {
 		this.comparadoresValidos = comparadoresValidos;
 	}
 
+	@Override
 	public String getPrefijo() {
 
 		String prefijo = "";
@@ -82,6 +88,7 @@ public final class Concepto {
 		return prefijo;
 	}
 
+	@Override
 	public String getSufijo() {
 		String sufijo = "";
 		if (tiposConceptos.equals(TiposConceptos.CADENA)) {
@@ -90,6 +97,22 @@ public final class Concepto {
 
 		return sufijo;
 
+	}
+
+	@Override
+	public TipoValor getTipoValor() {
+		return tipoValor;
+	}
+
+	@Override
+	public <T> T getValor() {
+		return (T) "";
+	}
+
+	@Override
+	public Concepto getConcepto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
