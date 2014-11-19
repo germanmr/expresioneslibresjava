@@ -6,13 +6,18 @@ public class TieneValorColeccionNumeros implements EsComparable {
 
 	private SortedSet<Integer> numeros;
 
+	private Concepto concepto;
+
 	/**
 	 * Pasar esto a una interfaz para marcar el tipo!!!!!
 	 */
 	private TipoValor tipoValor = TipoValor.COLECCION;
 
-	public TieneValorColeccionNumeros(SortedSet<Integer> numeros) {
+	private TiposConceptos tiposConceptos = TiposConceptos.NUMERO;
+
+	public TieneValorColeccionNumeros(SortedSet<Integer> numeros, Concepto concepto) {
 		this.numeros = numeros;
+		this.concepto = concepto;
 	}
 
 	@Override
@@ -37,38 +42,33 @@ public class TieneValorColeccionNumeros implements EsComparable {
 
 	@Override
 	public String getIdentificacion() {
-		// TODO Auto-generated method stub
-		return null;
+		return concepto.getIdentificacion();
 	}
 
 	@Override
 	public String getPrefijo() {
-		// TODO Auto-generated method stub
-		return null;
+		return "java.util.Arrays.asList(";
+
 	}
 
 	@Override
 	public String getSufijo() {
-		// TODO Auto-generated method stub
-		return null;
+		return ")";
 	}
 
 	@Override
 	public TiposConceptos getTiposConceptos() {
-		// TODO Auto-generated method stub
-		return null;
+		return tiposConceptos;
 	}
 
 	@Override
 	public String getDescripcion() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Concepto getConcepto() {
-		// TODO Auto-generated method stub
-		return null;
+		return concepto;
 	}
 
 }

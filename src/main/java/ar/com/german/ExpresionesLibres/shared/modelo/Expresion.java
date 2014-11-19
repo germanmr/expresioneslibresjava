@@ -1,5 +1,7 @@
 package ar.com.german.ExpresionesLibres.shared.modelo;
 
+import java.util.Arrays;
+
 /**
  * Es una agrupamiento de un {@link Concepto} + un {@link Concatenador} + un
  * valor + mas un {@link Concatenador}
@@ -18,6 +20,15 @@ public final class Expresion {
 	public Expresion() {
 	}
 
+	/**
+	 * Ingresamos un concepto, un comparador, una entidad de valor/es constantes
+	 * y un concatenador
+	 * 
+	 * @param concepto
+	 * @param comparador
+	 * @param constante
+	 * @param concatenador
+	 */
 	public Expresion(EsComparable concepto, Comparador comparador, EsComparable constante, Concatenador concatenador) {
 		this.concepto = concepto;
 		this.comparador = comparador;
@@ -44,9 +55,21 @@ public final class Expresion {
 
 			// Aca se arma:
 			// colecccionConstante.contains(conceptoIngresado)
+			// TODO representar a coleccionConstante como
+			// Arrays.asList(valorConstante)
+			// "Arrays.asList(" prefijo) + valorConstante + ")" sufijo
 
-			condicionReal = constante.getIdentificacion() + comparador.getPrefijo(concepto.getTiposConceptos()) + constante.getValor()
+			String constantegetPrefijo = constante.getPrefijo();
+			String constantegetValor = constante.getValor();
+			String constantegetSufijo = constante.getSufijo();
+			String conceptogetValor = concepto.getIdentificacion();
+
+			condicionReal = constantegetPrefijo + constantegetValor + constantegetSufijo
+					+ comparador.getPrefijo(concepto.getTiposConceptos()) + concepto.getIdentificacion()
 					+ comparador.getSufijo(concepto.getTiposConceptos());
+
+			// condicionReal = constante.getValor() + constante.getPrefijo() +
+			// concepto.getValor() + constante.getSufijo();
 
 			break;
 

@@ -1,6 +1,9 @@
 package ar.com.german.ExpresionesLibres.client;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -121,19 +124,21 @@ public class ResolutorSimpleTest extends ResolutorAbstractTest {
 		// coleccion.contiene()
 		// Integer numero=1;
 
-		// Estos son los conceptos
+		// Este es el concepto
 		List<EsComparable> conceptos = new ArrayList<>();
 
-		conceptos.add(getConceptoPrestacion());
+		conceptos.add(getConceptoObraSocial());
 
 		// Estas es la regla definida
-		List<Expresion> expresiones = new ArrayList<>();
 		SortedSet<Integer> obrasSociales = new TreeSet<>();
 		obrasSociales.add(220);
 		obrasSociales.add(226);
 		obrasSociales.add(229);
 
-		EsComparable tieneValorColeccionNumeros = new TieneValorColeccionNumeros(obrasSociales);
+		EsComparable tieneValorColeccionNumeros = new TieneValorColeccionNumeros(obrasSociales, new Concepto(getConceptoObraSocial()
+				.getIdentificacion(), getConceptoObraSocial().getDescripcion(), getConceptoObraSocial().getTiposConceptos()));
+
+		List<Expresion> expresiones = new ArrayList<>();
 
 		expresiones
 				.add(new Expresion(getConceptoObraSocial(), getComparadorEstaEn(), tieneValorColeccionNumeros, getConcatenadorNinguno()));
@@ -176,10 +181,7 @@ public class ResolutorSimpleTest extends ResolutorAbstractTest {
 		Integer obraSocial = 220;
 
 		// Validos
-		List<Integer> obrasSocialesValidas = new ArrayList<>();
-		obrasSocialesValidas.add(220);
-
-		if (obrasSocialesValidas.contains(obraSocial)) {
+		if (Arrays.asList(220).contains(obraSocial)) {
 			System.out.println("Contiene el numero!!!");
 		}
 
