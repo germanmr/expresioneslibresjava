@@ -12,6 +12,7 @@
 	<inherits name='com.google.gwt.user.theme.standard.Standard' />
 
 	<inherits name='org.vectomatic.libgwtfile' />
+	i
 
 	<!-- Other module inherits -->
 
@@ -22,6 +23,17 @@
 	<!-- Specify the paths for translatable code -->
 	<source path='client' />
 	<source path='shared' />
+
+
+	<set-configuration-property name="gwtp.bootstrapper"
+		value="ar.com.german.ExpresionesLibres.client.BootstrapperImpl" />
+
+	<!-- <set-configuration-property name="gwtp.prebootstrapper" -->
+	<!-- value="ar.com.german.ExpresionesLibres.client.PreBootstrapperImpl" 
+		/> -->
+
+
+	<!-- <define-configuration-property name="gwtp.prebootstrapper" is-multi-valued="true"/> -->
 
 	<inherits name='com.gwtplatform.dispatch.Dispatch' />
 
