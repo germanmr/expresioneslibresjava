@@ -32,6 +32,11 @@
 	<!-- value="ar.com.german.ExpresionesLibres.client.PreBootstrapperImpl" 
 		/> -->
 
+	<define-configuration-property name="gwtp.bootstrapper"
+		is-multi-valued="false" />
+	<set-configuration-property name="gwtp.bootstrapper"
+		value="ar.com.german.ExpresionesLibres.client.PreBootstrapperImpl" />
+
 
 	<!-- <define-configuration-property name="gwtp.prebootstrapper" is-multi-valued="true"/> -->
 
