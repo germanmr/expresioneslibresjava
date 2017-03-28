@@ -1,17 +1,38 @@
-/target
+# Package Files #
 *.jar
-/.settings
+*.war
+
+# Eclipse
+.settings/
+.project
+
+.checkstyle
+
+*.iml
+.idea**
+
+# Java
+.classpath
+*.class
+.classpath
+bin/
+META-INF/
+
+# GWT
+.gwt
 gwt-unitCache
 www-test
-target
-.project
-*.iml
-.settings
-.idea**
-.classpath
-.gwt
-bin
-META-INF
-.checkstyle
+
 /ExpresionesLibresTest-dev.launch
 /ExpresionesLibresTest-prod.launch
+
+target/
+.gwt/
+.settings/
+bin/
+
+
+
+# Logs
+*.log
+*.log.*
